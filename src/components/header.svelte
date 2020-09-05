@@ -4,10 +4,9 @@
 
 <style>
   a {
-    color: inherit;
-    text-decoration: none;
-    display: block;
-    position: relative;
+    @apply no-underline;
+    @apply block;
+    @apply relative;
   }
 
   a:not(.active):not(.site-name) {
@@ -16,13 +15,13 @@
 
   a::before {
     content: '';
-    position: absolute;
-    transition: transform 0.3s ease;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    @apply absolute;
+    @apply left-0;
+    @apply bottom-0;
+    @apply bg-gray-100;
+    @apply w-full;
     height: 2px;
-    background: #aaa;
+    transition: transform 0.3s ease;
     transform: scaleX(0);
   }
 
@@ -32,15 +31,15 @@
   }
 
   .active::before {
-    background: #e0fbfc;
+    background: theme('textColor.primary');
   }
 </style>
 
 <header class="flex mx-auto py-6 px-6 md:px-20 lg:px-32 font-semibold">
-  <a href="." class="site-name ml-0 font-bold">iamyuu.dev</a>
+  <a href="/" class="site-name ml-0 font-bold">iamyuu.dev</a>
 
   <nav class="flex flex-1 items-end justify-end uppercase">
-    <a href="tulisan" class={segment === 'tulisan' ? 'active mr-4' : 'mr-4'}>tulisan</a>
-    <a href="berbicara" class={segment === 'berbicara' ? 'active' : ''}>berbicara</a>
+    <a href="tulisan" class={`${segment === 'tulisan' ? 'active' : ''} mr-4`}>tulisan</a>
+    <a href="pembicara" class={segment === 'pembicara' ? 'active' : ''}>pembicara</a>
   </nav>
 </header>

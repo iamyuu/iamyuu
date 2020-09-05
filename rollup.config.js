@@ -20,11 +20,18 @@ const onwarn = (warning, onwarn) =>
 
 const extensions = ['.svelte', '.svx'];
 
+const sveltePreprocess = require('svelte-preprocess')({
+  postcss: true,
+  defaults: {
+    style: 'postcss'
+  }
+});
+
 const svelteOptions = {
   dev,
-  hydratable: true,
   extensions,
-  preprocess: mdsvex()
+  hydratable: true,
+  preprocess: [sveltePreprocess, mdsvex()]
 };
 
 export default {
