@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       fontFamily: {
         body:
-          '"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif'
+          'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif'
       },
       backgroundColor: {
         primary: '#293241'
