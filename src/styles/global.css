@@ -26,6 +26,19 @@ span {
   @apply my-5;
 }
 
+ul,
+ol {
+  @apply pl-8;
+}
+
+ul {
+  @apply list-disc;
+}
+
+ol {
+  @apply list-decimal;
+}
+
 li {
   @apply my-4;
 }

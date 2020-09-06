@@ -16,6 +16,7 @@ devDependencies:
   '@rollup/plugin-yaml': 2.1.1_rollup@2.26.3
   autoprefixer: 9.8.6
   cssnano: 4.1.10
+  front-matter: 4.0.2
   mdsvex: 0.8.4_svelte@3.24.1
   postcss: 7.0.32
   postcss-load-config: 2.1.0
@@ -1731,6 +1732,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
+  /front-matter/4.0.2:
+    dependencies:
+      js-yaml: 3.14.0
+    dev: true
+    resolution:
+      integrity: sha512-I8ZuJ/qG92NWX8i5x1Y8qyj3vizhXS31OxjKDu3LKP+7/qBgfIKValiZIEwoVoJKUHlhWtYrktkxV1XsX+pPlg==
   /fs-extra/8.1.0:
     dependencies:
       graceful-fs: 4.2.4
@@ -3237,6 +3244,7 @@ specifiers:
   autoprefixer: 9.8.6
   compression: 1.7.4
   cssnano: 4.1.10
+  front-matter: 4.0.2
   mdsvex: 0.8.4
   polka: next
   postcss: 7.0.32

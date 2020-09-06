@@ -20,6 +20,12 @@ const onwarn = (warning, onwarn) =>
 
 const extensions = ['.svelte', '.svx'];
 
+const mdsvexOptions = {
+  layout: {
+    post: './src/pages/tulisan/__layout.svelte'
+  }
+};
+
 const sveltePreprocess = require('svelte-preprocess')({
   postcss: true,
   defaults: {
@@ -31,7 +37,7 @@ const svelteOptions = {
   dev,
   extensions,
   hydratable: true,
-  preprocess: [sveltePreprocess, mdsvex()]
+  preprocess: [sveltePreprocess, mdsvex(mdsvexOptions)]
 };
 
 export default {
