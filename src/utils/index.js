@@ -1,4 +1,8 @@
 export function formatDate(date) {
+  if (typeof date === 'string' && Date.parse(date)) {
+    date = new Date(date);
+  }
+
   const options = {
     day: 'numeric',
     month: 'long',
