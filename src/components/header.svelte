@@ -7,6 +7,12 @@
     @apply no-underline;
     @apply block;
     @apply relative;
+    @apply py-2;
+    @apply px-1;
+  }
+
+  a:not(.site-name) {
+    @apply ml-4;
   }
 
   a:not(.active):not(.site-name) {
@@ -39,7 +45,7 @@
   <a href="/" class="site-name ml-0 font-bold">iamyuu.dev</a>
 
   <nav class="flex flex-1 items-end justify-end uppercase">
-    <a href="tulisan" class={`${segment === 'tulisan' ? 'active' : ''} mr-4`}>tulisan</a>
-    <a href="pembicara" class={segment === 'pembicara' ? 'active' : ''}>pembicara</a>
+    <a href="tulisan" class:active={segment === 'tulisan'}>tulisan</a>
+    <a href="berbicara" class:active={segment === 'berbicara'}>berbicara</a>
   </nav>
 </header>

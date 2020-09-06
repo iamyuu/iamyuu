@@ -2,13 +2,15 @@
   import talks from './_data.yml';
   import { formatDate } from '../../utils';
   import SEO from '../../components/seo.svelte';
+
+  const title = 'Berbicara';
 </script>
 
-<SEO title="Bicara" />
+<SEO {title} />
 
-<h1>Berbicara</h1>
+<h1 class="mb-8">{title}</h1>
 
-{#each talks as { title, description, date, formats }}
+{#each talks as { title, date, formats }}
   <div class="mt-6">
     <h2 class="leading-tight">{title}</h2>
     <small class="block uppercase text-sm font-bold">{formatDate(date)}</small>
