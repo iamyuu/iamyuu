@@ -18,6 +18,16 @@
   ];
 </script>
 
+<style>
+  :global(.feather) {
+    @apply inline-block;
+  }
+
+  :global(.feather):hover {
+    @apply opacity-75;
+  }
+</style>
+
 <footer class="text-gray-300 my-4 mx-auto py-4 px-8 text-center">
   <section class="mb-4">
     {#each icons as { url: href, icon: Icon }}

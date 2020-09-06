@@ -34,10 +34,6 @@ img {
   @apply w-full;
 }
 
-svg {
-  @apply inline-block;
-}
-
 p a,
 span a {
   box-shadow: inset 0 -0.12em 0 theme('textColor.primary');
