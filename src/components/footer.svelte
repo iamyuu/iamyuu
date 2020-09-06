@@ -15,13 +15,13 @@
 </script>
 
 <footer class="text-gray-300 my-4 mx-auto py-4 px-8 text-center">
-  <div class="mb-4">
+  <section class="mb-4">
     {#each icons as { url, icon: Icon }}
       <a href={url} target="_blank" rel="noopener noreferrer" class="m-2">
         <Icon />
       </a>
     {/each}
-  </div>
+  </section>
 
   <span class="text-base">
     &copy; {new Date().getFullYear()} iamyuu.dev &bull; Ditenagai oleh <a href="https://sapper.svelte.dev" target="_blank" rel="noopener noreferrer">Sapper</a> &bull; <a href="rss">rss</a>
