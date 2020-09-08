@@ -1,6 +1,6 @@
 {
   "name": "iamyuu",
-  "display": "minimal-ui",
+  "display": "standalone",
   "start_url": "/",
   "theme_color": "#293241",
   "background_color": "#293241",
