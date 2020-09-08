@@ -4,6 +4,8 @@
 
   export let title;
   export let date;
+  export let thumbnail;
+  export let description;
   export let tags = ['random'];
 </script>
 
@@ -22,7 +24,7 @@
   }
 </style>
 
-<SEO {title} />
+<SEO {title} {thumbnail} {description} keywords={tags.join(',').toLowerCase()} />
 
 <article>
   <section>
@@ -36,7 +38,9 @@
 
   <section>
     {#each tags as tag}
-      <a href="tag/{slugify(tag)}" class="tag">{tag}</a>
+      <a href="tag/{slugify(tag)}" class="tag">
+        {tag}
+      </a>
     {/each}
   </section>
 </article>
