@@ -26,7 +26,7 @@
 
   <article>
     <h2>
-      <a href="tulisan/{slug}" class="hover:underline py-2">
+      <a rel="prefetch" href="tulisan/{slug}" class="hover:underline py-2">
         {title}
       </a>
     </h2>
