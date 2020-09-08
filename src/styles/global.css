@@ -1,8 +1,6 @@
-/* purgecss start ignore */
 @import 'tailwindcss/base';
 
 @import 'tailwindcss/components';
-/* purgecss end ignore */
 
 @import 'tailwindcss/utilities';
 
@@ -40,7 +38,7 @@ ol {
 }
 
 li {
-  @apply my-4;
+  @apply my-1;
 }
 
 img {
