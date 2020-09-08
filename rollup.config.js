@@ -6,8 +6,10 @@ import babel from '@rollup/plugin-babel';
 import yaml from '@rollup/plugin-yaml';
 import { terser } from 'rollup-plugin-terser';
 import { mdsvex } from 'mdsvex';
+import image from 'svelte-image';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
+const tw = require('./tailwind.config');
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -19,6 +21,15 @@ const onwarn = (warning, onwarn) =>
   onwarn(warning);
 
 const extensions = ['.svelte', '.svx'];
+
+const svelteImageOptions = {
+  placeholder: 'trace',
+  trace: {
+    threshold: 120,
+    background: tw.theme.extend.textColor.primary,
+    color: tw.theme.extend.backgroundColor.primary
+  }
+};
 
 const mdsvexOptions = {
   layout: {
@@ -37,7 +48,7 @@ const svelteOptions = {
   dev,
   extensions,
   hydratable: true,
-  preprocess: [sveltePreprocess, mdsvex(mdsvexOptions)]
+  preprocess: [sveltePreprocess, mdsvex(mdsvexOptions), image(svelteImageOptions)]
 };
 
 export default {

@@ -6,6 +6,10 @@ desc: markdown test
 tags: ['Markdown', 'Test files']
 ---
 
+<script>
+  import Image from "svelte-image";
+</script>
+
 Markdown is intended to be as easy-to-read and easy-to-write as is feasible.Readability, however, is emphasized above all else. A Markdown-formatted
 document should be publishable as-is, as plain text, without looking
 like it's been marked up with tags or formatting instructions.
@@ -47,7 +51,7 @@ determines the header level.)
 
 Images are added with `![Image Alt](./images/image.jpg)`
 
-![Image](https://raw.githubusercontent.com/gridsome/gridsome-starter-blog/master/content/posts/images/alexandr-podvalny-220262-unsplash.jpg)
+<Image src="alexandr-podvalny-220262-unsplash.jpg" />
 
 ### Blockquotes
 
