@@ -25,11 +25,7 @@
   {/if}
 
   <article>
-    <h2>
-      <a rel="prefetch" href="tulisan/{slug}" class="hover:underline py-2">
-        {title}
-      </a>
-    </h2>
+    <h2><a rel="prefetch" href="tulisan/{slug}" class="hover:underline py-2"> {title} </a></h2>
     <p class="my-2">{desc}</p>
     <small class="uppercase text-base font-bold"> — {formatDate(date)}</small>
   </article>
