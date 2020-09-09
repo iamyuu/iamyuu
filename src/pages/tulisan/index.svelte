@@ -1,6 +1,6 @@
 <script context="module">
   export async function preload() {
-    const res = await this.fetch('tulisan.json');
+    const res = await this.fetch('blog.json');
     const data = await res.json();
 
     return { posts: data };

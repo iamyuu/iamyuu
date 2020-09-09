@@ -1,4 +1,4 @@
-import posts from './_posts.js';
+import posts from './tulisan/_posts';
 
 const contents = JSON.stringify(posts);
 
