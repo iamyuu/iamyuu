@@ -1,0 +1,22 @@
+---
+layout: post
+title: Membuat blog dengan Sapper - Pengantar
+date: 2020-09-09
+tags: ['random']
+desc: Cerita sedikit kenapa memutuskan buat membuat ulang situs pribadi saya ke Sapper
+---
+
+Awalnya situs pribadi saya di buat dengan bantuan [Gatsby](https://www.gatsbyjs.org/), karena di Gatsby ada plug-in yang cukup bagus yaitu [gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/) yang mana dia mengoptimalisasi semua gambar yang ada di situs kita. Tapi beberapa waktu lalu [lighthouse](https://developers.google.com/web/tools/lighthouse) menambahkan sesuatu dan hasilnya adalah pas cek laporan di lighthouse (ceritanya lagi jalanin si lighthouse nya), situs yang pake Gatsby performanya jadi jelek bangeettt, sampe merah.
+
+Akhirnya cari-cari alternatifnya, ketemu [Gridsome](https://gridsome.org/) (sebenernya udah tau dari lama sih hehe) tuh, tapi dipikir-pikir lagi mendingan situs ini buat uji coba segala macem kek API terbaru dan sebagainnya. Terus kenapa milih make [Svelte](https://svelte.dev/)? Karena Svelte ini masih baru dan hasil akhirnya bener-bener kecil jadinya bisa dapet performa yang bagus.
+
+Jadi teknologi apa aja yang bakal saya pake? Kurang lebih ini:
+
+- [Sapper](https://sapper.svelte.dev/) - mempermudah buat memulai proyek Svelte.
+- [Tailwind CSS](https://tailwindcss.com/) - mempermudah styling.
+- [MDsveX](https://mdsvex.com/) - menulis Svelte komponen di [Markdown](https://en.wikipedia.org/wiki/Markdown), jadinya bisa pake svelte-image.
+- [svelte-image](https://github.com/matyunya/svelte-image) - mengoptimalisasi gambar, fungsinya sama kaya gatsby-image tapi ini buat Svelte.
+
+Sisanya? Kaya RSS gitu gimana? Sayangnya belum ada, jadi mau ga mau harus buat sendiri
+
+Oh iya, ini adalah artikel berseri jadi di tunggu aja artikel berikutnya.
