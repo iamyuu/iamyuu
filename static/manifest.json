@@ -1,5 +1,6 @@
 {
-  "name": "iamyuu",
+  "name": "iamyuu.dev",
+  "short_name": "iamyuu",
   "display": "standalone",
   "start_url": "/",
   "theme_color": "#293241",
@@ -14,6 +15,12 @@
       "src": "icons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "icons/maskable_icon.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
