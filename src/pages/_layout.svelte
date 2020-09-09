@@ -5,9 +5,6 @@
   export let segment;
 </script>
 
-<style global src="../styles/global.css">
-</style>
-
 <Header {segment} />
 
 <main class="px-6 md:px-20 lg:px-64">

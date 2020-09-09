@@ -24,6 +24,7 @@
     "front-matter": "4.0.2",
     "mdsvex": "0.8.4",
     "postcss": "7.0.32",
+    "postcss-cli": "7.1.2",
     "postcss-load-config": "2.1.0",
     "rollup": "2.26.3",
     "rollup-plugin-svelte": "5.2.3",
@@ -38,6 +39,7 @@
   "main": "n/a",
   "scripts": {
     "dev": "sapper dev --routes src/pages --ext '.svelte .svx'",
-    "export": "sapper export --legacy --routes src/pages --ext '.svelte .svx'"
+    "export": "sapper export --legacy --routes src/pages --ext '.svelte .svx'",
+    "build:tw": "NODE_ENV=production postcss src/styles/global.css -o static/global.css"
   }
 }
