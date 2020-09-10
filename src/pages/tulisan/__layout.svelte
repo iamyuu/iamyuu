@@ -24,7 +24,7 @@
   }
 </style>
 
-<SEO {title} {thumbnail} {description} keywords={tags.join(',').toLowerCase()} />
+<SEO {title} {thumbnail} {description} isPost keywords={tags.join(',').toLowerCase()} />
 
 <article>
   <section>
@@ -38,7 +38,7 @@
 
   <section>
     {#each tags as tag}
-      <a href="tag/{slugify(tag)}" class="tag">
+      <a href="tags/{slugify(tag)}" class="tag">
         {tag}
       </a>
     {/each}

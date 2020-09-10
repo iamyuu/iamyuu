@@ -1,0 +1,33 @@
+<script context="module">
+  import { slugify } from '../../utils';
+
+  export async function preload({ params }) {
+    const allPosts = await this.fetch(`blog.json`);
+    const posts = await allPosts.json();
+
+    const postsByTag = posts.filter(post => {
+      if (!post.tags) {
+        return [];
+      }
+
+      const regex = new RegExp(post.tags.join('|'), 'i');
+      return regex.test(slugify(params.slug));
+    });
+
+    return { postsByTag, slug: params.slug };
+  }
+</script>
+
+<script>
+  import SEO from '../../components/SEO.svelte';
+  import ListPost from '../../components/list-post.svelte';
+
+  export let slug;
+  export let postsByTag;
+</script>
+
+<SEO title={slug} />
+
+<h2 class="mb-8">#{slug}</h2>
+
+<ListPost posts={postsByTag} />

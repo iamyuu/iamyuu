@@ -10,6 +10,7 @@
   export let keywords;
   export let thumbnail;
   export let description = 'Personal website by Yusuf (@iamyuu)';
+  export let isPost = false;
 </script>
 
 <svelte:head>
@@ -18,7 +19,7 @@
   <meta name="keywords" content={keywords} />
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={isPost ? 'article' : 'website'} />
   <meta property="og:url" content="{siteUrl}{$page.path}" />
   <meta property="og:title" content={title || siteName} />
   <meta property="og:description" content={description} />
