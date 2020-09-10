@@ -20,7 +20,7 @@
     @apply mb-2;
     @apply rounded-md;
     @apply bg-gray-200;
-    color: theme('backgroundColor.primary');
+    color: theme('backgroundColor.gray.200');
   }
 </style>
 
@@ -38,7 +38,7 @@
 
   <section>
     {#each tags as tag}
-      <a href="tags/{slugify(tag)}" class="tag">
+      <a rel=prefetch href="tags/{slugify(tag)}" class="tag">
         {tag}
       </a>
     {/each}

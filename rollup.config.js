@@ -9,6 +9,7 @@ import { mdsvex } from 'mdsvex';
 import image from 'svelte-image';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
+import { colors } from 'tailwindcss/defaultTheme';
 const tw = require('./tailwind.config');
 
 const mode = process.env.NODE_ENV;
@@ -26,8 +27,8 @@ const svelteImageOptions = {
   placeholder: 'trace',
   trace: {
     threshold: 120,
-    background: tw.theme.extend.textColor.primary,
-    color: tw.theme.extend.backgroundColor.primary
+    background: colors.gray['900'],
+    color: colors.gray['200']
   }
 };
 

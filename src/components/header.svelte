@@ -37,7 +37,7 @@
   }
 
   .active::before {
-    background: theme('textColor.primary');
+    background: theme('textColor.gray.200');
   }
 </style>
 
