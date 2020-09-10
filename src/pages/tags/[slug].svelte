@@ -19,7 +19,7 @@
 </script>
 
 <script>
-  import SEO from '../../components/SEO.svelte';
+  import SEO from '../../components/seo.svelte';
   import ListPost from '../../components/list-post.svelte';
 
   export let slug;

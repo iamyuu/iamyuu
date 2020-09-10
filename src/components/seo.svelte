@@ -1,15 +1,14 @@
 <script>
   import { stores } from '@sapper/app';
+  import config from '../site.config';
 
   const { page } = stores();
-
-  const siteName = 'iamyuu.dev';
-  const siteUrl = 'https://iamyuu.dev';
+  const { siteName, siteUrl } = config;
 
   export let title;
-  export let keywords;
   export let thumbnail;
-  export let description = 'Personal website by Yusuf (@iamyuu)';
+  export let keywords = config.keywords;
+  export let description = config.description;
   export let isPost = false;
 </script>
 

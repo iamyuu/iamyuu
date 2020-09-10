@@ -1,8 +1,8 @@
 import fs from 'fs';
 import posts from './tulisan/_posts';
+import config from '../site.config';
 
-const siteUrl = 'https://iamyuu.dev';
-const blogPath = 'tulisan';
+const { siteUrl, blogPath } = config;
 
 const renderUrl = (priority, slug) => `
   <url>
