@@ -1,8 +1,18 @@
-- title: CRUD with React (client side)
-  date: 2019-11-23
+- title: Getting Started with Sapper
+  date: 2020-08-30
   formats:
+    - text: slide
+      url: https://docs.google.com/presentation/d/14YCssqxn5Iss_dJBh_Ix09QPi2CXZx7Qb8IJiHSkYv0/edit#slide=id.g92d08e2397_0_69
     - text: demo
-      url: https://codesandbox.io/s/github/iamyuu/react-notes-app/tree/reactjs.id-meetup
+      url: https://github.com/svelteid/sapper-demo-app
+
+- title: Introduction To Svelte
+  date: 2020-02-29
+  formats:
+    - text: slide
+      url: https://introduction-to-svelte3.netlify.app
+    - text: demo
+      url: https://github.com/iamyuu/svelte-todo
 
 - title: Approach with React Apollo
   date: 2020-01-31
@@ -12,10 +22,8 @@
     - text: demo
       url: https://github.com/iamyuu/react-apollo-hooks-example
 
-- title: Introduction To Svelte
-  date: 2020-02-29
+- title: CRUD with React (client side)
+  date: 2019-11-23
   formats:
-    - text: slide
-      url: https://introduction-to-svelte3.netlify.app
     - text: demo
-      url: https://github.com/iamyuu/svelte-todo
+      url: https://codesandbox.io/s/github/iamyuu/react-notes-app/tree/reactjs.id-meetup
