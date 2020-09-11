@@ -1,6 +1,6 @@
 <script>
-  import SEO from '../../components/seo.svelte';
-  import { formatDate, slugify } from '../../utils';
+  import SEO from '../components/seo.svelte';
+  import { formatDate, slugify } from '../utils';
 
   export let title;
   export let date;
@@ -25,6 +25,7 @@
     @apply transition;
     @apply duration-500;
     @apply ease-in-out;
+    @apply no-underline;
   }
 
   .tag:hover {
@@ -35,7 +36,7 @@
 
 <SEO {title} {thumbnail} {description} isPost keywords={tags.join(',').toLowerCase()} />
 
-<article>
+<article class="prose prose-xl">
   <section>
     <h1>{title}</h1>
     <span class="text-base font-semibold">Ditulis pada {formatDate(date)}</span>
@@ -48,7 +49,7 @@
   <section>
     {#each tags as tag}
       <a rel=prefetch href="tags/{slugify(tag)}" class="tag">
-        #{tag}
+        #{tag.toLowerCase()}
       </a>
     {/each}
   </section>

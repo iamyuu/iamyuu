@@ -9,8 +9,7 @@ import { mdsvex } from 'mdsvex';
 import image from 'svelte-image';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
-import { colors } from 'tailwindcss/defaultTheme';
-const tw = require('./tailwind.config');
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -27,14 +26,15 @@ const svelteImageOptions = {
   placeholder: 'trace',
   trace: {
     threshold: 120,
-    background: colors.gray['900'],
-    color: colors.gray['200']
+    color: defaultTheme.colors.gray[900],
+    background: defaultTheme.colors.gray[200]
   }
 };
 
 const mdsvexOptions = {
   layout: {
-    post: './src/pages/tulisan/__layout.svelte'
+    _: './src/layouts/default.svelte',
+    post: './src/layouts/post.svelte'
   }
 };
 

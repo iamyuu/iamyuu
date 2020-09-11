@@ -1,9 +1,3 @@
-<script>
-	import SEO from "../components/seo.svelte";
-</script>
-
-<SEO />
-
 ## Halo 👋
 
 Saya Yusuf, terima kasih sudah mengunjungi situs web saya. Saya menulis beberapa artikel seputar pengembangan web (untuk saat ini!) dan hal-hal acak di halaman [tulisan](/tulisan). Kalo mau berlangganan bisa menggunakan [RSS](/feed.xml) situs ini.

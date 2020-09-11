@@ -6,7 +6,7 @@ const { siteUrl, blogPath } = config;
 const feedItem = item => `
     <item>
       <title>${item.title}</title>
-      <description><![CDATA[${item.desc}]]></description>
+      <description><![CDATA[${item.description}]]></description>
       <link>${siteUrl}/${blogPath}/${item.slug}</link>
       <guid isPermaLink="false">${siteUrl}/${blogPath}/${item.slug}</guid>
       <pubDate>${new Date(item.date).toUTCString()}</pubDate>

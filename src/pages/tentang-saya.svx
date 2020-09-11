@@ -1,10 +1,6 @@
-<script>
-	import SEO from "../components/seo.svelte";
-
-  const title = "Tentang saya";
-</script>
-
-<SEO {title} />
+---
+title: 'Tentang saya'
+---
 
 ## {title}
 

@@ -17,6 +17,4 @@
 
 <SEO {title} />
 
-<h1 class="mb-8">{title}</h1>
-
 <ListPost {posts} />

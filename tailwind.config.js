@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   purge: false,
   theme: {
@@ -6,8 +8,72 @@ module.exports = {
         body:
           'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif'
       }
+    },
+    typography: {
+      default: {
+        css: {
+          color: defaultTheme.colors.gray[200],
+          a: {
+            textDecoration: 'none',
+            color: defaultTheme.colors.gray[200]
+          },
+          h1: {
+            color: defaultTheme.colors.gray[200]
+          },
+          h2: {
+            color: defaultTheme.colors.gray[200]
+          },
+          h3: {
+            color: defaultTheme.colors.gray[200]
+          },
+          h4: {
+            color: defaultTheme.colors.gray[200]
+          },
+          h5: {
+            color: defaultTheme.colors.gray[200]
+          },
+          h6: {
+            color: defaultTheme.colors.gray[200]
+          },
+
+          strong: {
+            color: defaultTheme.colors.gray[400]
+          },
+
+          pre: {
+            color: defaultTheme.colors.gray[200],
+            backgroundColor: defaultTheme.colors.gray[800]
+          },
+          code: {
+            color: defaultTheme.colors.gray[200]
+          },
+
+          figcaption: {
+            color: defaultTheme.colors.gray[200]
+          },
+
+          blockquote: {
+            borderLeftColor: defaultTheme.colors.gray[300]
+          },
+
+          'ol > li::before': {
+            color: defaultTheme.colors.gray[300]
+          },
+
+          thead: {
+            color: defaultTheme.colors.gray[200],
+            borderBottomColor: defaultTheme.colors.gray[100]
+          },
+          'tbody tr': {
+            borderBottomColor: defaultTheme.colors.gray[100]
+          },
+          'tbody tr': {
+            borderBottomColor: defaultTheme.colors.gray[100]
+          }
+        }
+      }
     }
   },
   variants: {},
-  plugins: []
+  plugins: [require('@tailwindcss/typography')]
 };
