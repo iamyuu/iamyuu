@@ -1,5 +1,4 @@
 import fs from 'fs';
-import posts from './tulisan/_posts';
 import config from '../site.config';
 
 const { siteUrl, blogPath } = config;
@@ -37,6 +36,6 @@ export function get(_, res) {
     'Content-Type': 'application/xml'
   });
 
-  const sitemap = renderSitemap(getAllPages(), posts);
+  const sitemap = renderSitemap(getAllPages(), __POSTS__);
   res.end(sitemap);
 }

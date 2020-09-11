@@ -2,8 +2,7 @@
   import { slugify } from '../../utils';
 
   export async function preload({ params }) {
-    const allPosts = await this.fetch(`blog.json`);
-    const posts = await allPosts.json();
+    const posts = __POSTS__;
 
     const postsByTag = posts.filter(post => {
       if (!post.tags) {

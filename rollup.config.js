@@ -8,8 +8,9 @@ import { terser } from 'rollup-plugin-terser';
 import { mdsvex } from 'mdsvex';
 import image from 'svelte-image';
 import config from 'sapper/config/rollup.js';
-import pkg from './package.json';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import pkg from './package.json';
+import posts from './src/utils/get-all-post';
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -59,7 +60,8 @@ export default {
     plugins: [
       replace({
         'process.browser': true,
-        'process.env.NODE_ENV': JSON.stringify(mode)
+        'process.env.NODE_ENV': JSON.stringify(mode),
+        __POSTS__: JSON.stringify(posts)
       }),
       svelte({
         emitCss: true,
@@ -112,7 +114,8 @@ export default {
     plugins: [
       replace({
         'process.browser': false,
-        'process.env.NODE_ENV': JSON.stringify(mode)
+        'process.env.NODE_ENV': JSON.stringify(mode),
+        __POSTS__: JSON.stringify(posts)
       }),
       svelte({
         generate: 'ssr',

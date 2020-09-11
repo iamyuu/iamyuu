@@ -45,7 +45,7 @@
   <a href="/" class="site-name ml-0 font-bold">iamyuu.dev</a>
 
   <nav class="flex flex-1 items-end justify-end uppercase">
-    <a href="tulisan" class:active={segment === 'tulisan'} rel=prefetch>tulisan</a>
+    <a href="tulisan" class:active={segment === 'tulisan'}>tulisan</a>
     <a href="berbicara" class:active={segment === 'berbicara'}>berbicara</a>
   </nav>
 </header>

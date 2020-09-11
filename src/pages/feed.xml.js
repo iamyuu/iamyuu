@@ -1,4 +1,3 @@
-import posts from './tulisan/_posts';
 import config from '../site.config';
 
 const { siteUrl, blogPath } = config;
@@ -34,6 +33,6 @@ export function get(_, res) {
     'Content-Type': 'application/rss+xml'
   });
 
-  const feed = renderXmlRssFeed(posts);
+  const feed = renderXmlRssFeed(__POSTS__);
   res.end(feed);
 }

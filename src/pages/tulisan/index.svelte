@@ -1,18 +1,9 @@
-<script context="module">
-  export async function preload() {
-    const res = await this.fetch('blog.json');
-    const data = await res.json();
-
-    return { posts: data };
-  }
-</script>
-
 <script>
   import SEO from '../../components/seo.svelte';
   import ListPost from '../../components/list-post.svelte';
 
-  export let posts;
   const title = 'Tulisan';
+  const posts = __POSTS__;
 </script>
 
 <SEO {title} />
