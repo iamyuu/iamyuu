@@ -15,7 +15,14 @@ module.exports = {
           color: defaultTheme.colors.gray[200],
           a: {
             textDecoration: 'none',
-            color: defaultTheme.colors.gray[200]
+            color: defaultTheme.colors.gray[200],
+            boxShadow: `inset 0 -0.12em 0 ${defaultTheme.colors.gray[200]}`,
+            transition: 'box-shadow 0.2s ease-in-out, color 0.2s ease-in-out',
+
+            '&:hover': {
+              color: defaultTheme.colors.gray[900],
+              boxShadow: `inset 0 -1.5em 0 ${defaultTheme.colors.gray[200]}`
+            }
           },
           h1: {
             color: defaultTheme.colors.gray[200]
@@ -54,10 +61,6 @@ module.exports = {
 
           blockquote: {
             borderLeftColor: defaultTheme.colors.gray[300]
-          },
-
-          'ol > li::before': {
-            color: defaultTheme.colors.gray[300]
           },
 
           thead: {

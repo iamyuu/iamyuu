@@ -3,15 +3,3 @@
 @import 'tailwindcss/components';
 
 @import 'tailwindcss/utilities';
-
-p a,
-span a {
-  box-shadow: inset 0 -0.12em 0 theme('textColor.gray.200');
-  transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-
-p a:hover,
-span a:hover {
-  color: theme('backgroundColor.gray.900');
-  box-shadow: inset 0 -1.5em 0 theme('textColor.gray.200');
-}

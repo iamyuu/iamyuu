@@ -5,6 +5,19 @@
   export let posts;
 </script>
 
+<style>
+  a {
+    @apply py-2;
+    @apply shadow-none;
+  }
+
+  a:hover {
+    @apply text-gray-200;
+    @apply underline;
+    @apply shadow-none;
+  }
+</style>
+
 <article class="prose prose-xl">
   {#if title}
     <h1>{title}</h1>
@@ -16,7 +29,11 @@
     {/if}
 
     <section>
-      <h2><a rel="prefetch" href="tulisan/{slug}" class="hover:underline py-2"> {title} </a></h2>
+      <h2>
+        <a href="tulisan/{slug}">
+          {title}
+        </a>
+      </h2>
 
       <p class="my-2">{description}</p>
 

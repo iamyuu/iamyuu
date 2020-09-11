@@ -26,11 +26,13 @@
     @apply duration-500;
     @apply ease-in-out;
     @apply no-underline;
+    @apply shadow-none;
   }
 
   .tag:hover {
     @apply bg-gray-200;
     @apply text-gray-900;
+    @apply shadow-none;
   }
 </style>
 

@@ -37,6 +37,16 @@
   :global(.feather):hover {
     @apply opacity-75;
   }
+
+  .powered-by {
+    box-shadow: inset 0 -0.12em 0 theme('textColor.gray.200');
+    transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+
+  .powered-by:hover {
+    color: theme('backgroundColor.gray.900');
+    box-shadow: inset 0 -1.5em 0 theme('textColor.gray.200');
+  }
 </style>
 
 <footer class="text-gray-300 my-4 mx-auto py-4 px-8 text-center">
@@ -52,6 +62,6 @@
   </section>
 
   <span class="text-base">
-    &copy; {new Date().getFullYear()} iamyuu.dev &bull; Ditenagai oleh <a href="https://sapper.svelte.dev" target="_blank" rel="noopener noreferrer">Sapper</a>
+    &copy; {new Date().getFullYear()} iamyuu.dev &bull; Ditenagai oleh <a href="https://sapper.svelte.dev" target="_blank" rel="noopener noreferrer" class="powered-by">Sapper</a>
   </span>
 </footer>
