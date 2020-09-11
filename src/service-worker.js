@@ -72,11 +72,12 @@ self.addEventListener('fetch', event => {
 					cache.put(event.request, response.clone());
 					return response;
 				} catch(err) {
-					const response = await cache.match(event.request);
-					if (response) return response;
+          const response = await cache.match(event.request);
+          if (response) return response;
 
-					throw err;
-				}
+          // If both fail, show a offline page
+          return caches.match('/offline.html');
+        }
 			})
 	);
 });
