@@ -1,41 +1,30 @@
 <script>
-  import Facebook from './icons/facebook.svelte';
-  import Twitter from './icons/twitter.svelte';
-  import Instagram from './icons/instagram.svelte';
-  import Linkedin from './icons/linkedin.svelte';
-  import Github from './icons/github.svelte';
-  import Mail from './icons/mail.svelte';
+  import FacebookIcon from './icons/facebook.svelte';
+  import TwitterIcon from './icons/twitter.svelte';
+  import LinkedinIcon from './icons/linkedin.svelte';
+  import GithubIcon from './icons/github.svelte';
+  import FeedIcon from './icons/rss.svelte';
 
   const icons = [
     {
-      icon: Mail,
-      label: 'Mail',
-      url: 'mailto:iamyuu027@gmail.com'
-    },
-    {
-      icon: Linkedin,
+      icon: LinkedinIcon,
       label: 'Linkedin',
       url: 'https://linkedin.com/in/iamyuu'
     },
     {
-      icon: Facebook,
+      icon: FacebookIcon,
       label: 'Facebook',
       url: 'https://facebook.com/iamyuu027'
     },
     {
-      icon: Instagram,
-      label: 'Instagram',
-      url: 'https://instagram.com/iamyuu027'
-    },
-    {
-      icon: Twitter,
-      label: 'Twitter',
-      url: 'https://twitter.com/iamyuu027'
-    },
-    {
-      icon: Github,
+      icon: GithubIcon,
       label: 'Github',
       url: 'https://github.com/iamyuu'
+    },
+    {
+      icon: TwitterIcon,
+      label: 'Twitter',
+      url: 'https://twitter.com/iamyuu027'
     }
   ];
 </script>
@@ -57,6 +46,9 @@
         <Icon />
       </a>
     {/each}
+    <a href="/feed.xml" rel="alternate" type="application/rss+xml" aria-label="RSS Feed" class="m-2">
+      <FeedIcon />
+    </a>
   </section>
 
   <span class="text-base">
