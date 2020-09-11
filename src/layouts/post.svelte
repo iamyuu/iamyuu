@@ -48,7 +48,7 @@
 
   <section>
     {#each tags as tag}
-      <a rel=prefetch href="tags/{slugify(tag)}" class="tag">
+      <a rel=prefetch href="tag/{slugify(tag)}" class="tag">
         #{tag.toLowerCase()}
       </a>
     {/each}

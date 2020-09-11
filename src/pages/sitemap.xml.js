@@ -23,7 +23,7 @@ const getAllPages = () => {
 
   fs.readdirSync('./src/pages').forEach(file => {
     file = file.split('.')[0];
-    if (file.charAt(0) !== '_' && file !== 'sitemap' && file !== 'index' && file !== 'tags' && file !== 'feed') {
+    if (file.charAt(0) !== '_' && file !== 'sitemap' && file !== 'index' && file !== 'tag' && file !== 'feed') {
       pages.push(file);
     }
   });
