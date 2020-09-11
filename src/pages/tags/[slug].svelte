@@ -28,6 +28,4 @@
 
 <SEO title={slug} />
 
-<h2 class="mb-8">#{slug}</h2>
-
-<ListPost posts={postsByTag} />
+<ListPost title={`#${slug}`} posts={postsByTag} />

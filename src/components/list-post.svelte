@@ -1,10 +1,15 @@
 <script>
   import { formatDate } from '../utils';
 
+  export let title;
   export let posts;
 </script>
 
 <article class="prose prose-xl">
+  {#if title}
+    <h1>{title}</h1>
+  {/if}
+
   {#each posts as { title, slug, date, description }, index}
     {#if index}
       <hr class="border-green-100 opacity-25" />
