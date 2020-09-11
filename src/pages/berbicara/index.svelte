@@ -10,6 +10,11 @@
   h3 {
     @apply mb-1;
   }
+
+  .dot {
+    @apply ml-2;
+    @apply mr-1;
+  }
 </style>
 
 <SEO {title} />
@@ -18,17 +23,15 @@
   {#each talks as { title, date, formats }}
     <section>
       <h3 class="leading-tight">{title}</h3>
-      <small class="block uppercase text-sm font-bold">{formatDate(date)}</small>
+      <small class="block uppercase font-bold">{formatDate(date)}</small>
 
       <span class="leading-none">
         {#each formats as { text, url }, index}
           {#if index}
-            <span>&bull;</span>
+            <span class="dot">&bull;</span>
           {/if}
 
-          <a href={url} target="_blank" rel="noopener noreferrer" class="mr-1 text-lg">
-            {text}
-          </a>
+          <a href={url} target="_blank" rel="noopener noreferrer">{text}</a>
         {/each}
       </span>
     </section>
