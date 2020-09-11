@@ -12,8 +12,8 @@
 # routing internally.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
 
 # Headers to return with requests for the specified paths
 [[headers]]
