@@ -6,6 +6,6 @@
 
 <SEO {title} />
 
-<article class="prose prose-xl">
+<article class="mt-12 prose prose-xl">
   <slot />
 </article>

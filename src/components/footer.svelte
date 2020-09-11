@@ -49,7 +49,7 @@
   }
 </style>
 
-<footer class="text-gray-300 my-4 mx-auto py-4 px-8 text-center">
+<footer class="text-gray-300 mt-12 mb-4 mx-auto py-4 px-8 text-center">
   <section class="mb-4">
     {#each icons as { url: href, icon: Icon, label }}
       <a {href} target="_blank" rel="noopener noreferrer" aria-label={label} class="m-2">

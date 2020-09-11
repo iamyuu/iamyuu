@@ -38,7 +38,7 @@
 
 <SEO {title} {thumbnail} {description} isPost keywords={tags.join(',').toLowerCase()} />
 
-<article class="prose prose-xl">
+<article class="mt-12 prose prose-xl">
   <section>
     <h1>{title}</h1>
     <span class="text-base font-semibold">Ditulis pada {formatDate(date)}</span>
