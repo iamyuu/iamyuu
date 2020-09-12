@@ -45,6 +45,10 @@
   }
 </style>
 
+<svelte:head>
+  <link rel="stylesheet" href="https://unpkg.com/prism-theme-night-owl@1.4.0/build/style.css" />
+</svelte:head>
+
 <SEO {title} {thumbnail} {description} isPost keywords={tags.join(',').toLowerCase()} />
 
 <article class="mt-12 prose prose-xl">

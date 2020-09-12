@@ -47,12 +47,8 @@ module.exports = {
             color: defaultTheme.colors.gray[400]
           },
 
-          pre: {
-            color: defaultTheme.colors.gray[200],
-            backgroundColor: defaultTheme.colors.gray[800]
-          },
           code: {
-            color: defaultTheme.colors.gray[200]
+            color: defaultTheme.colors.gray[100]
           },
 
           figcaption: {
