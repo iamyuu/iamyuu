@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Membuat blog dengan Sapper - Pengantar
+title: Menulis ulang situs pribadi
 date: 2020-09-09
 tags: ['random']
-description: Cerita sedikit kenapa memutuskan buat membuat ulang situs pribadi saya ke Sapper
+description: Cerita sedikit kenapa memutuskan buat menulis ulang situs pribadi saya ke Sapper
 ---
 
 Awalnya situs pribadi saya di buat dengan bantuan [Gatsby](https://www.gatsbyjs.org/), karena di Gatsby ada *plug-in* yang cukup bagus yaitu [gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/) yang mana dia mengoptimalisasi semua gambar yang ada di situs kita. Tapi beberapa waktu lalu [lighthouse](https://developers.google.com/web/tools/lighthouse) menambahkan sesuatu dan hasilnya adalah pas jalanin lighthouse dan liat hasilnya lighthouse-nya, semua situs yang pake Gatsby performanya jadi jelek bangeettt, sampe merah malahan.
@@ -18,4 +18,4 @@ Jadi situs ini sekarang ditenagai oleh Sapper dan juga dengan bantuan dari beber
 - [MDsveX](https://mdsvex.com/) - kalo ini biar bisa masukin komponen Svelte di berkas [Markdown](https://en.wikipedia.org/wiki/Markdown) dan jadinya bisa pake svelte-image deh.
 - [svelte-image](https://github.com/matyunya/svelte-image) - yang terakhir ini buat mengoptimalisasi gambar, fungsinya sama kaya gatsby-image tapi ini buat Svelte.
 
-Di artikel selanjutnya insyaAllah bakal saya tulis gimana membuat blog dengan Sapper kaya [situs saya ini](https://github.com/iamyuu/iamyuu).
+Kalo penasaran sama kodenya gimana, kamu bisa cek di github saya di [repo iamyuu](https://github.com/iamyuu/iamyuu), insyaAllah nanti saya bakal tulis juga gimana cara membuat blog dengan bantuan Sapper.
