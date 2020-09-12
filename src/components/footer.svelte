@@ -1,15 +1,15 @@
 <script>
+  import MailIcon from './icons/mail.svelte';
   import FacebookIcon from './icons/facebook.svelte';
   import TwitterIcon from './icons/twitter.svelte';
-  import LinkedinIcon from './icons/linkedin.svelte';
   import GithubIcon from './icons/github.svelte';
   import FeedIcon from './icons/rss.svelte';
 
   const icons = [
     {
-      icon: LinkedinIcon,
-      label: 'Linkedin',
-      url: 'https://linkedin.com/in/iamyuu'
+      icon: MailIcon,
+      label: 'Email',
+      url: 'mailto:hello@iamyuu.dev'
     },
     {
       icon: FacebookIcon,
