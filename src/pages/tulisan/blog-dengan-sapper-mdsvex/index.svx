@@ -1,0 +1,94 @@
+---
+layout: post
+draft: true
+title: Membuat blog dengan Sapper - MDsveX
+date: 2020-09-12
+tags: ['sapper', 'mdsvex']
+description: Artikel berseri membuat blog dengan sapper bagian pertama, di artikel ini bakal menjelaskan membuat proyek sapper dan mengintegrasi mdsvex
+---
+
+## Init proyek
+
+Karena kita belum init proyeknya, jadi kita harus init proyeknya dulu. Kalian bisa *clone* atau unduh dari repo [sapper-template](https://github.com/sveltejs/sapper-template/tree/rollup)
+
+``` sh
+git clone --single-branch --branch rollup https://github.com/sveltejs/sapper-template blog
+```
+
+atau pake [degit](https://github.com/Rich-Harris/degit):
+
+``` sh
+npx degit "sveltejs/sapper-template#rollup" my-app
+```
+
+Kalo saya sendiri lebih suka pake degit karena ga ada folder `.git`-nya dan lebih sederhana aja.
+
+## MDsveX
+
+Jadi sebenarnya apa sih mdsvex itu? Jadi mdsvex itu pra prosesor markdown kek [MDX](https://mdxjs.com/) cuman ini buat [Svelte](https://svelte.dev/).
+
+Pertanyaannya lagi kenapa pake mdsvex? Kenapa nggak pake berkas markdown (`.md`) biasa aja? Jadi karena [svelte-image](https://github.com/matyunya/svelte-image) (buat sekarang) belum bisa baca berkas dinamis jadi mau ga mau harus `import` komponennya dan berkas markdown biasa itu ga bisa `import` komponen Svelte jadi mau ga mau.
+
+### Penggunaan
+
+Sebelum menggunakannya pastikan udah menginstallnya dengan menjalankan (di sesuaikan aja sama package manager yang kalian pake):
+
+```sh
+npm i --save-dev mdsvex
+```
+
+Penggunaannya kurang lebih nambahin `preprocessor` di berkas konfigurasi rollup dan kasih tau ke Svelte buat menangani berkas `.svx`.
+
+```js
+// rollup.config.js
+import { mdsvex } from 'mdsvex';
+
+const extensions = ['.svelte', '.svx'];
+
+export default {
+  client: {
+    ...
+    plugins: [
+      svelte({
+        ...
+        extensions,
+        preprocess: [mdsvex()]
+      }),
+      legacy &&
+        babel({
+          extensions: ['.js', '.mjs', '.html', ...extensions],
+          ...
+        }),
+      ...
+    ],
+  },
+
+  server: {
+    ...
+    plugins: [
+      svelte({
+        ...
+        extensions,
+        preprocess: [mdsvex()]
+      }),
+      ...
+    ],
+  },
+};
+```
+
+Karena kita pake Sapper jadi kita juga harus ngasih tau ke ke si Sapper buat menangani berkas `.svx`.
+
+Caranya adalah di berkas `package.json` cukup tambahin `--ext '.svelte .svx'`, kurang lebih `scripts`-nya jadi kaya gini:
+
+```json
+{
+  ...
+  "scripts": {
+    "dev": "sapper dev --ext '.svelte .svx'",
+    "export": "sapper export --legacy --ext '.svelte .svx'",
+  }
+}
+```
+
+Dan sekarang kalian bisa nambahin halaman dengan ekstensi `.svx`.
