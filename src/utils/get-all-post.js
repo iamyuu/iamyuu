@@ -20,7 +20,7 @@ const posts = fs
       slug: fileName.replace(hasExtention, '')
     };
   })
-  .filter(post => !post.draft)
+  .filter(post => process.env.NODE_ENV === 'development' || !post.draft)
   .sort((a, b) => b.date.getTime() - a.date.getTime());
 
 export default posts;
