@@ -10,6 +10,15 @@
 </script>
 
 <style>
+  .title {
+    @apply mb-4;
+  }
+
+  .date {
+    @apply text-lg;
+    @apply font-semibold;
+  }
+
   .tag {
     @apply inline-block;
     @apply text-base;
@@ -40,8 +49,8 @@
 
 <article class="mt-12 prose prose-xl">
   <section>
-    <h1>{title}</h1>
-    <span class="text-base font-semibold">Ditulis pada {formatDate(date)}</span>
+    <h1 class="title">{title}</h1>
+    <small class="date">Ditulis tanggal {formatDate(date)}</small>
   </section>
 
   <section>
