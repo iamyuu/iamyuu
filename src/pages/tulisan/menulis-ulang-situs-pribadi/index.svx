@@ -8,11 +8,21 @@ thumbnail: /lightouse-report-202009121304.png
 description: Cerita sedikit kenapa memutuskan buat menulis ulang situs pribadi saya ke Sapper
 ---
 
+<style>
+  .thumbnail {
+    @apply shadow-none;
+  }
+
+  .thumbnail:hover {
+    @apply shadow-none;
+  }
+</style>
+
 <script>
   import Image from 'svelte-image';
 </script>
 
-<a href="https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fiamyuu.dev%2F" target="_blank" rel="noopener noreferrer" aria-label="laporan lightouse iamyuu.dev" class="shadow-none hover:shadow-none">
+<a href="https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fiamyuu.dev%2F" target="_blank" rel="noopener noreferrer" aria-label="laporan lightouse iamyuu.dev" class="thumbnail">
   <Image src="/lightouse-report-202009121304.png" alt="laporan lightouse iamyuu.dev" />
 </a>
 
