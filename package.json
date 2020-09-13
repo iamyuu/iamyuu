@@ -40,9 +40,9 @@
   "main": "n/a",
   "scripts": {
     "dev": "sapper dev --routes src/pages --ext '.svelte .svx'",
-    "export": "sapper export --legacy --routes src/pages --ext '.svelte .svx' --entry '/ /404'",
+    "export": "sapper export --routes src/pages --ext '.svelte .svx' --legacy --entry '/ /404 /offline'",
     "preexport": "npm run build:tw",
-    "postexport": "mv __sapper__/export/404/index.html __sapper__/export/404.html",
+    "postexport": "node src/utils/mv-missing-file",
     "build:tw": "NODE_ENV=production postcss src/styles/global.css -o static/global.css"
   }
 }
