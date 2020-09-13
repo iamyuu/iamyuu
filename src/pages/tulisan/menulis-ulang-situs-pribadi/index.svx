@@ -2,7 +2,8 @@
 layout: post
 title: Menulis ulang situs pribadi
 date: 2020-09-09
-tags: ['random']
+tags:
+  - random
 thumbnail: /lightouse-report-202009121304.png
 description: Cerita sedikit kenapa memutuskan buat menulis ulang situs pribadi saya ke Sapper
 ---
@@ -11,18 +12,19 @@ description: Cerita sedikit kenapa memutuskan buat menulis ulang situs pribadi s
   import Image from 'svelte-image';
 </script>
 
-<!-- https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fiamyuu.dev%2F -->
-<Image src="/lightouse-report-202009121304.png" alt="laporan lightouse iamyuu.dev" />
+<a href="https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fiamyuu.dev%2F" target="_blank" rel="noopener noreferrer" aria-label="laporan lightouse iamyuu.dev" class="shadow-none hover:shadow-none">
+  <Image src="/lightouse-report-202009121304.png" alt="laporan lightouse iamyuu.dev" />
+</a>
 
-Awalnya situs pribadi saya di buat dengan bantuan [Gatsby](https://www.gatsbyjs.org/), karena di Gatsby ada *plug-in* yang cukup bagus yaitu [gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/) yang mana dia mengoptimalisasi semua gambar yang ada di situs kita. Tapi beberapa waktu lalu [lighthouse](https://developers.google.com/web/tools/lighthouse) menambahkan kriteria web vital dan hasilnya adalah pas jalanin lighthouse dan liat hasilnya lighthouse-nya, semua situs yang pake Gatsby performanya jadi jelek bangeettt, sampe merah malahan.
+Awalnya situs pribadi saya di buat dengan bantuan [Gatsby](https://www.gatsbyjs.org/), karena di Gatsby ada _plug-in_ yang cukup bagus yaitu [gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/) yang mana dia mengoptimalisasi semua gambar yang ada di situs kita. Tapi beberapa waktu lalu [lighthouse](https://developers.google.com/web/tools/lighthouse) menambahkan kriteria web vital dan hasilnya adalah pas jalanin lighthouse dan liat hasilnya lighthouse-nya, semua situs yang pake Gatsby performanya jadi jelek bangeettt, sampe merah malahan.
 
-Dan ini kan *static site generator* (SSG) yang mana hasilnya adalah berkas statis, menurut saya kebangetan banget dah, udah SSG terus situsnya sederhana cuman blog gitu doang dapet skor di lighthouse-nya jelek.
+Dan ini kan _static site generator_ (SSG) yang mana hasilnya adalah berkas statis, menurut saya kebangetan banget dah, udah SSG terus situsnya sederhana cuman blog gitu doang dapet skor di lighthouse-nya jelek.
 
-Akhirnya cari-cari alternatifnya, ketemu [Gridsome](https://gridsome.org/) (sebenernya udah tau dari lama sih hehe), tapi dipikir-pikir lagi mendingan situs ini buat uji coba segala macem kek API terbaru dan sebagainnya. Dan karena saya ga mau cape, ngebuat kerangka kerja sendiri akhirnya pake [Sapper](https://sapper.svelte.dev/) karena di Sapper harus buat apa-apa sendiri, karena komunitasnya masih kecil jadinya belum banyak *plug-in* yang bertebaran.
+Akhirnya cari-cari alternatifnya, ketemu [Gridsome](https://gridsome.org/) (sebenernya udah tau dari lama sih hehe), tapi dipikir-pikir lagi mendingan situs ini buat uji coba segala macem kek API terbaru dan sebagainnya. Dan karena saya ga mau cape, ngebuat kerangka kerja sendiri akhirnya pake [Sapper](https://sapper.svelte.dev/) karena di Sapper harus buat apa-apa sendiri, karena komunitasnya masih kecil jadinya belum banyak _plug-in_ yang bertebaran.
 
-Jadi situs ini sekarang ditenagai oleh Sapper dan juga dengan bantuan dari beberapa *plug-in*, kaya:
+Jadi situs ini sekarang ditenagai oleh Sapper dan juga dengan bantuan dari beberapa _plug-in_, kaya:
 
-- [Tailwind CSS](https://tailwindcss.com/) - ini biar gampang *styling*-nya.
+- [Tailwind CSS](https://tailwindcss.com/) - ini biar gampang _styling_-nya.
 - [MDsveX](https://mdsvex.com/) - kalo ini biar bisa masukin komponen Svelte di berkas [Markdown](https://en.wikipedia.org/wiki/Markdown) dan jadinya bisa pake svelte-image deh.
 - [svelte-image](https://github.com/matyunya/svelte-image) - yang terakhir ini buat mengoptimalisasi gambar, fungsinya sama kaya gatsby-image tapi ini buat Svelte.
 
