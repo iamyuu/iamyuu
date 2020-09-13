@@ -3,8 +3,8 @@
   "short_name": "iamyuu",
   "display": "standalone",
   "start_url": "/",
-  "theme_color": "#293241",
-  "background_color": "#293241",
+  "theme_color": "#1A202C",
+  "background_color": "#1A202C",
   "icons": [
     {
       "src": "/icons/android-chrome-192x192.png",
