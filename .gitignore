@@ -30,3 +30,4 @@ build/Release
 yarn-error.log
 /cypress/screenshots/
 /__sapper__/
+/static/g
