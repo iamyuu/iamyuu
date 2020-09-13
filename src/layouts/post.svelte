@@ -6,7 +6,8 @@
   export let date;
   export let thumbnail;
   export let description;
-  export let tags = ['random'];
+  export let tags = [];
+  export let keywords = tags;
 </script>
 
 <style>
@@ -49,7 +50,7 @@
   <link rel="stylesheet" href="https://unpkg.com/prism-theme-night-owl@1.4.0/build/style.css" />
 </svelte:head>
 
-<SEO {title} {thumbnail} {description} isPost keywords={tags.join(',').toLowerCase()} />
+<SEO isPost {title} {thumbnail} {description} keywords={keywords.join(',').toLowerCase()} />
 
 <article class="mt-12 prose prose-xl">
   <section>
