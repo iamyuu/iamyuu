@@ -2,9 +2,6 @@
   import { slugify } from '../../utils';
 
   export async function preload({ params }) {
-    // idk sapper dosen't export sitemap.xml, so we need to fetch it
-    const sitemap = this.fetch('sitemap.xml');
-
     const posts = __POSTS__;
 
     const postsByTag = posts.filter(post => {
@@ -16,7 +13,7 @@
       return regex.test(slugify(params.slug));
     });
 
-    return { sitemap, postsByTag, slug: params.slug };
+    return { postsByTag, slug: params.slug };
   }
 </script>
 
