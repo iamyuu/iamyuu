@@ -3,21 +3,32 @@ layout: post
 draft: true
 title: Membuat blog dengan Sapper - MDsveX
 date: 2020-09-12
-tags: ['sapper', 'mdsvex']
+tags:
+  - sapper
+  - mdsvex
+keywords:
+  - cara membuat blog
+  - membuat blog dengan sapper
 description: Artikel berseri membuat blog dengan sapper bagian pertama, di artikel ini bakal menjelaskan membuat proyek sapper dan mengintegrasi mdsvex
 ---
 
+<script>
+  import Image from 'svelte-image';
+</script>
+
+<Image src="/mdsvex.jpg" alt="mdsvex" />
+
 ## Init proyek
 
-Karena kita belum init proyeknya, jadi kita harus init proyeknya dulu. Kalian bisa *clone* atau unduh dari repo [sapper-template](https://github.com/sveltejs/sapper-template/tree/rollup)
+Karena kita belum init proyeknya, jadi kita harus init proyeknya dulu. Kalian bisa _clone_ atau unduh dari repo [sapper-template](https://github.com/sveltejs/sapper-template/tree/rollup)
 
-``` sh
+```sh
 git clone --single-branch --branch rollup https://github.com/sveltejs/sapper-template blog
 ```
 
 atau pake [degit](https://github.com/Rich-Harris/degit):
 
-``` sh
+```sh
 npx degit "sveltejs/sapper-template#rollup" my-app
 ```
 
