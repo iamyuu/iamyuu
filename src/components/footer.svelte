@@ -51,19 +51,21 @@
 
 <footer class="text-gray-300 mt-12 mb-4 mx-auto py-4 px-8 text-center">
   <section class="mb-4">
-    <!-- generate sitemap, read how sapper export works to know why add this -->
-    <a href="/sitemap.xml" class="hidden">sitemap</a>
     {#each icons as { url: href, icon: Icon, label }}
       <a {href} target="_blank" rel="noopener noreferrer" aria-label={label} class="m-2">
         <Icon />
       </a>
     {/each}
+
     <a href="/feed.xml" rel="alternate" type="application/rss+xml" aria-label="RSS Feed" class="m-2">
       <FeedIcon />
     </a>
+
+    <!-- generate sitemap, read how sapper export works to know why I added this -->
+    <a href="/sitemap.xml" role="none" aria-hidden="true" class="hidden">sitemap</a>
   </section>
 
   <span class="text-base">
-    &copy; {new Date().getFullYear()} iamyuu.dev &bull; Ditenagai oleh <a href="https://sapper.svelte.dev" target="_blank" rel="noopener noreferrer" class="powered-by">Sapper</a>
+    &copy; {new Date().getFullYear()} iamyuu.dev &bull; Powered by <a href="https://sapper.svelte.dev" target="_blank" rel="noopener noreferrer" class="powered-by">Sapper</a>
   </span>
 </footer>
