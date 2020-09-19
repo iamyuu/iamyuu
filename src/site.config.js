@@ -3,5 +3,5 @@ export default {
   siteUrl: 'https://iamyuu.dev',
   description: 'Personal website by Yusuf (@iamyuu)',
   keywords: ['personal', 'website'].join(',').toLowerCase(),
-  blogPath: 'tulisan'
+  blogPath: 'article'
 };

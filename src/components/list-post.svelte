@@ -29,11 +29,7 @@
     {/if}
 
     <section>
-      <h2>
-        <a href="tulisan/{slug}">
-          {title}
-        </a>
-      </h2>
+      <h2><a href="article/{slug}"> {title} </a></h2>
 
       <p class="my-2">{description}</p>
 

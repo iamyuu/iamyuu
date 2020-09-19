@@ -2,7 +2,7 @@
   import SEO from '../../components/seo.svelte';
   import ListPost from '../../components/list-post.svelte';
 
-  const title = 'Tulisan';
+  const title = 'Article';
   const posts = __POSTS__;
 </script>
 

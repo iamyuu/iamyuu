@@ -2,8 +2,6 @@
   import talks from './_data.yml';
   import { formatDate } from '../../utils';
   import SEO from '../../components/seo.svelte';
-
-  const title = 'Berbicara';
 </script>
 
 <style>
@@ -17,7 +15,7 @@
   }
 </style>
 
-<SEO {title} />
+<SEO title='Talk' />
 
 <article class="prose prose-xl">
   {#each talks as { title, date, formats }}

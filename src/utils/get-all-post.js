@@ -1,7 +1,7 @@
 import fs from 'fs';
 import frontMatter from 'front-matter';
 
-const postPath = './src/pages/tulisan';
+const postPath = './src/pages/article';
 const hasExtention = /\.[^/.]+$/;
 
 const posts = fs
