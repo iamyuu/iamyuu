@@ -1,8 +1,8 @@
 ## Hi there 👋
 
 - 🤝 I'm Muhammad Yusuf
+- 🏢 Currently working for [Achiko](https://www.achiko.com)
 - 🏫 Studying information systems at [Binus](https://onlinelearning.binus.ac.id)
-- 🏢 Working for [Achiko](https://www.achiko.com)
 - 😄 Pronouns is he/him
 - 👯 I’m looking to collaborate on web projects
 - ⚙️ My tech stack (currently) React, Nest, TypeScript, GraphQL, PostgreSQL
