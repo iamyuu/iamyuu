@@ -1,0 +1,27 @@
+---
+title: About me
+---
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+</style>
+
+## Hi, I'm Yusuf
+
+My full name Muhammad Yusuf and my username on the internet [iamyuu027](https://facebook.com/iamyuu027) or just [iamyuu](https://github.com/iamyuu). I am a software engineer (it means I’m not a repairman). Born and bred in [Bogor, Indonesia](https://kotabogor.go.id).
+
+In love with software development with a strong passion to learn new things. Currently working for [Achiko](https://www.achiko.com) and studying information systems at [Binus](https://onlinelearning.binus.ac.id).
+
+`iamyuu` it's mean i·am·yuu (or yusuf)
+
+### Socials
+
+- GitHub - [github.com/iamyuu](https://github.com/iamyuu)
+- LinkedIn - [linkedin.com/in/iamyuu](https://linkedin.com/in/iamyuu)
+- Telegram - [telegram.me/iamyuu](https://telegram.me/iamyuu)
+- Twitter - [twitter.com/iamyuu027](https://twitter.com/iamyuu027)
+- Facebook - [facebook.com/iamyuu027](https://facebook.com/iamyuu027)
+- Instagram - [instagram.com/iamyuu027](https://instagram.com/iamyuu027)

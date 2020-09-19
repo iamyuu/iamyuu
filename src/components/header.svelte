@@ -45,6 +45,7 @@
   <a href="/" class="site-name ml-0 font-bold">iamyuu.dev</a>
 
   <nav class="flex flex-1 items-end justify-end uppercase">
+    <a href="about" class:active={segment === 'about'}>about</a>
     <a href="article" class:active={segment === 'article'}>article</a>
     <a href="talk" class:active={segment === 'talk'}>talk</a>
   </nav>
