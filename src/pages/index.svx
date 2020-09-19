@@ -1,3 +1,3 @@
-## Halo 👋
+## Hello 👋
 
-Saya Yusuf, terima kasih sudah mengunjungi situs web saya. Saya menulis beberapa artikel seputar pengembangan web (untuk saat ini!) dan hal-hal acak di halaman [article](/article). Kalo mau berlangganan bisa menggunakan [RSS](/feed.xml) situs ini.
+I'm Yusuf, thanks for visiting my personal website. I write a few articles around software development and random stuff on [article](/article). If you want to subscribe, you can use the [RSS of this site](/feed.xml).
