@@ -4,11 +4,11 @@ title: Menulis ulang situs pribadi
 date: 2020-09-09
 tags:
   - random
-thumbnail: /lightouse-report-202009121304.png
+# thumbnail: /lightouse-report-202009121304.png
 description: Cerita sedikit kenapa memutuskan buat menulis ulang situs pribadi saya ke Sapper
 ---
 
-<style>
+<!-- <style>
   .thumbnail {
     @apply shadow-none;
   }
@@ -16,15 +16,15 @@ description: Cerita sedikit kenapa memutuskan buat menulis ulang situs pribadi s
   .thumbnail:hover {
     @apply shadow-none;
   }
-</style>
+</style> -->
 
-<script>
+<!-- <script>
   import Image from 'svelte-image';
-</script>
+</script> -->
 
-<a href="https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fiamyuu.dev%2F" target="_blank" rel="noopener noreferrer" aria-label="laporan lightouse iamyuu.dev" class="thumbnail">
+<!-- <a href="https://lighthouse-dot-webdotdevsite.appspot.com//lh/html?url=https%3A%2F%2Fiamyuu.dev%2F" target="_blank" rel="noopener noreferrer" aria-label="laporan lightouse iamyuu.dev" class="thumbnail">
   <Image src="/lightouse-report-202009121304.png" alt="laporan lightouse iamyuu.dev" />
-</a>
+</a> -->
 
 Awalnya situs pribadi saya di buat dengan bantuan [Gatsby](https://www.gatsbyjs.org/), karena di Gatsby ada _plug-in_ yang cukup bagus yaitu [gatsby-image](https://www.gatsbyjs.com/plugins/gatsby-image/) yang mana dia mengoptimalisasi semua gambar yang ada di situs kita. Tapi beberapa waktu lalu [lighthouse](https://developers.google.com/web/tools/lighthouse) menambahkan kriteria web vital dan hasilnya adalah pas jalanin lighthouse dan liat hasilnya lighthouse-nya, semua situs yang pake Gatsby performanya jadi jelek bangeettt, sampe merah malahan.
 

@@ -12,12 +12,6 @@ keywords:
 description: Artikel berseri membuat blog dengan sapper bagian pertama, di artikel ini bakal menjelaskan membuat proyek sapper dan mengintegrasi mdsvex
 ---
 
-<script>
-  import Image from 'svelte-image';
-</script>
-
-<Image src="/mdsvex.jpg" alt="mdsvex" />
-
 ## Init proyek
 
 Karena kita belum init proyeknya, jadi kita harus init proyeknya dulu. Kalian bisa _clone_ atau unduh dari repo [sapper-template](https://github.com/sveltejs/sapper-template/tree/rollup)
@@ -94,10 +88,9 @@ Caranya adalah di berkas `package.json` cukup tambahin `--ext '.svelte .svx'`, k
 
 ```json
 {
-  ...
   "scripts": {
     "dev": "sapper dev --ext '.svelte .svx'",
-    "export": "sapper export --legacy --ext '.svelte .svx'",
+    "export": "sapper export --legacy --ext '.svelte .svx'"
   }
 }
 ```
