@@ -39,7 +39,7 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "dev": "sapper dev --routes src/pages --ext '.svelte .svx'",
+    "dev": "sapper dev --routes src/pages --ext '.svelte .svx' --port 9000",
     "export": "sapper export --routes src/pages --ext '.svelte .svx' --legacy --entry '/ /404 /offline'",
     "preexport": "npm run build:tw",
     "postexport": "node src/utils/mv-missing-file",
