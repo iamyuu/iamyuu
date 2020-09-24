@@ -1,0 +1,113 @@
+---
+layout: post
+title: SQL
+date: 2020-09-24
+tags:
+  - sql
+description: Pengenalan SQL
+---
+
+<!-- reference: https://www.academia.edu/36282207/DML_pptx -->
+<!-- reference: https://gist.github.com/bradtraversy/c831baaad44343cc945e76c2e30927b3 -->
+
+<!-- SQL singkatan dari _Structured Query Language_.
+
+Terdiri dari
+
+- Data Defnitoon Language (DDL)
+- Data Manipulation Language (DML)
+- Data Control Language (DCL)
+- Transaction Language (TSL)
+
+## DDL
+
+Berguna untuk mendefinisikan objek dalam database, seperti membuat (`CREATE`), mengubah (`ALTER`), menghapus (` `).
+
+### `CREATE`
+
+Fungsinya buat **membuat** objek di database. -->
+
+```sql
+-- buat database dengan nama `dms`
+CREATE DATABASE dms;
+
+-- membuktikan udah di buat
+SHOW DATABASES;
+
+-- pake database `dms`
+USE dms;
+
+--  buat tabel `user`
+CREATE TABLE users (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(100)
+);
+
+-- membuktikan udah di buat
+SHOW TABLES;
+
+--  hapus table `users`
+DROP TABLE users;
+
+-- ubah table `users` tambahin `email` tipe datanya varchar panjang maksimalnya 50
+ALTER TABLE users ADD email VARCHAR(50);
+
+-- ubah table `users` modifikasi kolom `email` jadi tipe datanya varchar panjang maksimalnya jadi 100 dan harus unik
+ALTER TABLE users MODIFY COLUMN email VARCHAR(100) UNIQUE;
+
+-- nambahin data ke table `users`
+INSERT INTO users (name, email) values ('Brad', 'brad@gmail.com');
+
+-- nambahin beberapa data sekaligus ke table `users`
+INSERT INTO users (name, email) values ('Fred', 'fred@gmail.com'), ('Sara', 'sara@gmail.com');
+
+-- ambil semua data dari table users
+SELECT * FROM users;
+
+-- ambil name sama email dari table users
+SELECT name, email FROM users;
+
+-- ambil name dari table users yang punya email `sara@gmail.com`
+SELECT name FROM users WHERE email = 'sara@gmail.com';
+
+-- perbaharui isi table users atur email jadi freddy@gmail.com yang punya id 2
+UPDATE users SET email = 'freddy@gmail.com' WHERE id = 2;
+
+-- hapus dari table users yang punya id 1
+DELETE FROM users WHERE id = 1;
+
+-- membuat table `posts` yang berelasi ke table `users`
+CREATE TABLE posts (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	author_id INT,
+	title VARCHAR(100),
+	body TEXT,
+	published_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (author_id) REFERENCES users (id)
+);
+
+-- nambahin data ke table `posts`
+INSERT INTO posts (author_id, title, body)
+		VALUES(2, 'Post One', 'This is post one'), (3, 'Post Two', 'This is post two'), (2, 'Post Three', 'This is post three')
+
+-- ambil nama, judul dan format published_at jadi d-m-Y dari table `users` di gabung sama table posts di mana user id sama dengna post id lalu urutkan berdasarkan published_at secara menurun atau dari yang paling baru
+SELECT
+	users.name,
+	posts.title,
+	DATE_FORMAT(posts.published_at, '%d-%m-%Y') AS published_at
+FROM
+	users
+	INNER JOIN posts ON users.id = posts.author_id
+	ORDER BY posts.published_at DESC;
+```
+
+users -> posts => has many (1 orang punya banyak pos)
+
+<!-- Maksud kode di atas adalah buat database dengan nama dms, abis buat database kita  -->
+
+<!-- -- membuat tabel
+CREATE DATABASE users; -->
+
+<!-- ### `ALTER`
+
+### `DROP` -->
