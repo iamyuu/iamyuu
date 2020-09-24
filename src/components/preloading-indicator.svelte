@@ -17,7 +17,7 @@
   });
 
   onDestroy(() => {
-    clearInterval(next);
+    clearTimeout(next);
   });
 </script>
 
