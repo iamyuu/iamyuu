@@ -27,6 +27,35 @@ Berguna untuk mendefinisikan objek dalam database, seperti membuat (`CREATE`), m
 
 Fungsinya buat **membuat** objek di database. -->
 
+database yang di gunakan maria db versi 10 (kode asalnya dari mysql).
+
+users -> posts => has many (1 orang punya banyak pos).
+
+---
+
+`CHAR` vs `VARCHAR` -> ukuran penyimpanan
+
+| data    | CHAR(5) | VARCHAR(5) |
+| ------- | ------- | ---------- |
+| 'du '   | 5 byte  | 3 byte     |
+| 'dunia' | 5 byte  | 6 byte     |
+
+`CHAR` -> cocok buat kolom yang karakternya tetap (mis. KTP).
+`VARCHAR` -> cocok buat kolom yang karakternya **tidak** tetap (mis. nama).
+
+---
+
+`TINYTEXT` vs `TEXT` vs `MEDIUMTEXT` vs `LONGTEXT`
+
+| Tipe Data  | Ukuran Maksimum        | Jumlah Karakter Maksimum |
+| ---------- | ---------------------- | ------------------------ |
+| TINYTEXT   | 255 byte               | 255                      |
+| TEXT       | 65.535 byte (64 KB)    | 6.5535                   |
+| MEDIUMTEXT | 16.777.215 byte (16MB) | 16.777.215               |
+| LONGTEXT   | 4.294.967.295 (4GB)    | 4.294.967.295            |
+
+**catatan:** sama kaya `VARCHAR` jumlah yang bakal di simpan menyesuaikan dengan jumlah karakternya.
+
 ```sql
 -- buat database dengan nama `dms`
 CREATE DATABASE dms;
@@ -43,11 +72,22 @@ CREATE TABLE users (
 	name VARCHAR(100)
 );
 
+-- membuat table `posts` yang berelasi ke table `users`
+CREATE TABLE posts (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	author_id INT,
+	title VARCHAR(100),
+	body TEXT,
+	published_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (author_id) REFERENCES users (id)
+);
+
+-- nambahin data ke table `posts`
+INSERT INTO posts (author_id, title, body)
+		VALUES(2, 'Post One', 'This is post one'), (3, 'Post Two', 'This is post two'), (2, 'Post Three', 'This is post three')
+
 -- membuktikan udah di buat
 SHOW TABLES;
-
---  hapus table `users`
-DROP TABLE users;
 
 -- ubah table `users` tambahin `email` tipe datanya varchar panjang maksimalnya 50
 ALTER TABLE users ADD email VARCHAR(50);
@@ -64,9 +104,6 @@ INSERT INTO users (name, email) values ('Fred', 'fred@gmail.com'), ('Sara', 'sar
 -- ambil semua data dari table users
 SELECT * FROM users;
 
--- ambil name sama email dari table users
-SELECT name, email FROM users;
-
 -- ambil name dari table users yang punya email `sara@gmail.com`
 SELECT name FROM users WHERE email = 'sara@gmail.com';
 
@@ -75,20 +112,6 @@ UPDATE users SET email = 'freddy@gmail.com' WHERE id = 2;
 
 -- hapus dari table users yang punya id 1
 DELETE FROM users WHERE id = 1;
-
--- membuat table `posts` yang berelasi ke table `users`
-CREATE TABLE posts (
-	id INT AUTO_INCREMENT PRIMARY KEY,
-	author_id INT,
-	title VARCHAR(100),
-	body TEXT,
-	published_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (author_id) REFERENCES users (id)
-);
-
--- nambahin data ke table `posts`
-INSERT INTO posts (author_id, title, body)
-		VALUES(2, 'Post One', 'This is post one'), (3, 'Post Two', 'This is post two'), (2, 'Post Three', 'This is post three')
 
 -- ambil nama, judul dan format published_at jadi d-m-Y dari table `users` di gabung sama table posts di mana user id sama dengna post id lalu urutkan berdasarkan published_at secara menurun atau dari yang paling baru
 SELECT
@@ -99,9 +122,10 @@ FROM
 	users
 	INNER JOIN posts ON users.id = posts.author_id
 	ORDER BY posts.published_at DESC;
-```
 
-users -> posts => has many (1 orang punya banyak pos)
+--  hapus table `posts`
+DROP TABLE posts;
+```
 
 <!-- Maksud kode di atas adalah buat database dengan nama dms, abis buat database kita  -->
 
