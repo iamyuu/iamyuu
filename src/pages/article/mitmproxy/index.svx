@@ -1,0 +1,65 @@
+---
+layout: post
+title: Mitmproxy
+date: 2020-11-28
+tags:
+  - mitmproxy
+description: Mencoba mendapatkan private APi dengan mitmproxy
+---
+
+<script>
+  import Image from 'svelte-image';
+</script>
+
+## Apa itu mitmproxy?
+
+Sederhananya mitmproxy itu ya proxy, semua permintaan (request) ke luar bakal di catat sama mitmproxy baru nanti dikirim ke server. Jadi dengan memanfaatkan mitmproxy ini kita bisa dapet private API, dari url, payload sampai api key.
+
+<Image src="/how-mitmproxy-works.png" alt="cara kerja mitmproxy" />
+
+## Installasi
+
+Kalo pake mac dan pake [brew](https://brewhub.com) bisa langsung di install
+
+```sh
+brew install mitmproxy
+```
+
+Kalo ga pake mac bisa langsung download di official websitenya ([mitmproxy.org/downloads](https://mitmproxy.org/downloads)) atau kalo mau docker [mitmproxy/mitmproxy](https://hub.docker.com/r/mitmproxy/mitmproxy).
+
+## Konfigurasi
+
+CATATAN: disini saya bakal pake mac dan android
+CATATAN: pastikan mac dan android satu jaringan (Wi-Fi)
+
+Menghubungkan hp ke komputer kalian, buka `System Preferences` terus ke `Network` kalian bisa liat IP nya
+
+<Image src="/mac-network-preferences.png" alt="mac network preferences" />
+
+Langkah selanjutnya mengatur proxy di hp, buka Wi-Fi setting
+
+<Image src="/redmi-wifi-setting.jpg" alt="mac network preferences" />
+
+klik panah kiri buat ngebuka detailnya, terus scroll ke bawah dan ganti pilihan Proxy dari `None` ke `Manual`
+
+<Image src="/redmi-wifi-setting-detail.jpg" alt="mac network preferences" />
+
+|            |                                             |
+| ---------- | ------------------------------------------- |
+| Hostname   | \(IP address dari System Preferences tadi\) |
+| Port       | 8080                                        |
+| Bypass for | \(kosongin aja\)                            |
+
+Kalo udah klik ikon ceklis
+
+Terus coba buka [mitm.it](mitm.it) di browser hp, nanti kalian bakal tau apa udah terhubung apa belum. Kalo udah terhubung nanti tampilannya kurang lebih kaya gini
+
+<Image src="/mitm-dot-it.jpg" alt="mitm.it" />
+
+Terus download dan install certificate-nya (yang ca cer), ini buat ngeparse request yang servernya pake https
+
+## Praktek
+
+Kalo udah konfigurasinya kalian bisa langsung jalanin `mitmweb` di terminal / CMD kalian, nanti bakal ngebuka web server.
+
+Terus tinggal buka aplikasinya dan kalian tinggal monitoring di mitmweb nya

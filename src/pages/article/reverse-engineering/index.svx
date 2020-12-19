@@ -1,0 +1,49 @@
+---
+layout: post
+title: Reverse Engineering
+date: 2020-11-28
+tags:
+  - Reverse Engineering
+description: Mencoba menyelesaikan permasalah dengan reverse engineering
+---
+
+<script>
+  import Image from 'svelte-image';
+</script>
+
+## Apa sih Reverse Engineering itu?
+
+Sebelumnya kita perlu tau dulu Engineering itu apa, jadi Engineering (rekayasa) adalah sebuah proses implementasi dari desain menjadi produk.
+
+Nah jadi Reverse Engineering itu adalah produk yang udah ada atau udah jadi kita bongkar lagi, tujuannya bisa beragam kek ngebuat replika sistem, ngemodifikasi sistem dan sebagainnya.
+
+Di kasus saya ini, saya mau ngebuat replika dari sebuah sistem di kampus saya.
+
+## Permasalahan
+
+Permasalahan utamanya adalah saya sering banget lupa deadline ngumpulin tugas sama deadline ngerjain ulangan, kadang juga saya lupa jadwal kelas kapan. Sebenernya di aplikasi mobilenya itu ada push notification tapi agak ngaco kelasnya harusnya malam ini malah dapat pagi dan malemnya malah ga dapat lagi, kalo buat deadline tugas sama ulangan ga dapat sama sekali.
+
+<Image src="/push-notif-univ.jpg" alt="push notification univ" />
+
+Permasalahan lainnya adalah setiap ganti periode saya harus download semua materinya buat ~~dipelajari~~ ngerjain tugas. Kalo liat gambar dibawah ini materinya itu lumayan banyak, banyangkan kalo harus di klik satu per satu itu cukup melelahkan dan belum lagi harus navigasi ke pelajaran lain buat ngerjain hal yang sama.
+
+<Image src="/list-course-materials.png" alt="list course materials" />
+
+Jadi inti dari permasalahannya yang mau saya hadapi adalah:
+
+1. Pengingat buat ngumpulin tugas dan ngerjain ulangan.
+2. Otomasi download materi setiap period.
+
+## Solusi
+
+Sebenernya ke dua permasalahan ini bisa di selesaikan sama browser automation, jadi saya scrap semua data yang di butuhkan dan tinggal di proses dari nyimpen data kapan ngumpulin tugas, ngerjain ulangan, sama download materi.
+
+Tapi dari dulu sampai sekarang ini belum saya kerjain sama sekali, sampai liat vidionya [Web Programming UNPAS](https://www.youtube.com/channel/UCkXmLjEr95LVtGuIm3l2dPg) ngobrol bareng sama mas Odi ([@mathdroid](https://twitter.com/mathdroid)) dan lucunya waktu itu lagi cari vidio tentang hackathon karena penasaran hackathon itu kek gimana sih.
+
+<iframe src="https://www.youtube.com/embed/LKATs6MDeCw" width="100%" height="325" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="Tips Belajar Programming, Hackathon, Indie Hacker & Reverse Engineering | Feat. Mathdroid"></iframe>
+
+Vidio itu lumayan memotivasi saya karena di vidio itu salah satu pembahasannya adalah tentang nyelesain permasalahan yang dia hadapi dan juga ngebahas dikit-dikit tentang Reverse Engineering, Terus karena tertarik sama Reverse Engineering akhirnya dengerin ceritanya lagi tentang Reverse Engineering di podcast [Ngobrolin Startup & Teknologi](https://open.spotify.com/show/3cA81ivwFR2gDMF570j06X).
+
+<iframe src="https://open.spotify.com/embed-podcast/episode/7LGZG2moLXX3wjdgACSBcS" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media" title="Suka Duka Reverse Engineering: Kena Banned! Bareng Mathdroid"></iframe>
+
+Oke kita balik lagi, jadi kalo sebelumnya solusinya itu idenya pake browser automation diganti jadi langsung pake private API-nya hasilnya proses datanya jadi lebih cepet, nah terus gimana cara dapat private API-nya? ~~tanya langsung ke pembuatnya~~ pake [mitmproxy](https://mitmproxy.org).

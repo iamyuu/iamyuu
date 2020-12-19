@@ -1,0 +1,29 @@
+---
+layout: post
+draft: true
+title: Interview
+date: 2020-12-02
+tags:
+  - interview
+description: Interview
+---
+
+## Tell Me About Yourself
+
+My name is Muhammad Yusuf, you can call me Yousuf, I am 19 years old, living and raised in Bogor. My last education background was SMK majored in software engineering and now studying at Binus Jakarta majoring in information systems.
+
+My strengths are I like to learn new things and I also learn quite quickly, and my weakness is time management and communication skills.
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/5v-wyR5emRw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+## Why Did You Leave Your Last Job?
+
+Well I enjoyed the `LAMA BEKERJA` years that I worked in `PERUSAHAAN TERAKHIR` and we actually took the company from X to Y and during that time I’ve learned a lot and I met some amazing people. But you know, it’s time i feel like I’m ready for more and I feel that I could do more and I’m looking for a new position in your company to take on more challenges and to grow and to be more
+
+It’s my personal choice that I wanna grow I wanna do more and I believe I could do more
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/NyAZmZZaNPs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+<!-- ### What If You Got Laid Off? -->
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/NyAZmZZaNPs?start=139" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
