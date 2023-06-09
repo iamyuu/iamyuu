@@ -5,13 +5,14 @@
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
-		"preview": "wrangler pages dev ./dist"
+		"preview": "wrangler pages dev ./dist",
+		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
 	},
 	"dependencies": {
 		"@astrojs/cloudflare": "6.4.0",
-		"@astrojs/rss": "^2.4.3",
-		"@astrojs/sitemap": "^1.3.2",
-		"astro": "^2.6.1"
+		"@astrojs/rss": "2.4.3",
+		"@astrojs/sitemap": "1.3.2",
+		"astro": "2.6.1"
 	},
 	"devDependencies": {
 		"@iconify-json/lucide": "1.1.98",
