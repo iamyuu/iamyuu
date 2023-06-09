@@ -1,0 +1,15 @@
+html {
+	@apply antialiased scroll-smooth;
+
+	color-scheme: dark;
+	touch-action: manipulation;
+	text-rendering: optimizeLegibility;
+}
+
+body {
+	@apply font-sans text-lg bg-gray-900 text-gray-300;
+}
+
+::selection {
+	@apply bg-gray-700 text-white;
+}

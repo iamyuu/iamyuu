@@ -1,0 +1,15 @@
+{
+	"name": "iamyuu",
+	"private": true,
+	"version": "0.0.0",
+	"packageManager": "pnpm@8.6.0",
+	"scripts": {
+		"web:dev": "turbo run dev --filter=@iamyuu/web",
+		"web:build": "turbo run build --filter=@iamyuu/web"
+	},
+	"author": "Muhammad Yusuf <yusuf@iamyuu.dev>",
+	"license": "MIT",
+	"devDependencies": {
+		"turbo": "1.10.2"
+	}
+}
