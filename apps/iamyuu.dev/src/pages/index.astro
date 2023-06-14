@@ -1,86 +1,121 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Html from '../components/BaseHtml.astro';
+import Footer from '../components/Footer.astro';
 
-const currentYear = new Date().getFullYear();
 const info = {
 	name: 'Muhammad Yusuf',
 	role: 'Software Engineer',
 	location: 'Indonesia',
 	contact: [
 		{
+			type: 'link',
 			label: 'Twitter',
-			value: 'https://twitter.com/iamyuu027'
+			value: 'https://twitter.com/iamyuu027',
 		},
 		{
-			label: 'Telegram',
-			value: 'https://telegram.me/iamyuu027'
-		},
-		{
+			type: 'link',
 			label: 'GitHub',
-			value: 'https://github.com/iamyuu'
+			value: 'https://github.com/iamyuu',
 		},
 		{
-			label: 'CV',
-			value: 'https://read.cv/iamyuu'
+			type: 'link',
+			label: 'Linkedin',
+			value: 'https://linkedin.com/in/iamyuu',
 		},
 		{
+			type: 'link',
+			label: 'Telegram',
+			value: 'https://telegram.me/iamyuu027',
+		},
+		// {
+		// 	type: 'link',
+		// 	label: 'Instagram',
+		// 	value: 'https://instagram.com/iamyuu027',
+		// },
+		// {
+		// 	type: 'link',
+		// 	label: 'Facebook',
+		// 	value: 'https://facebook.com/iamyuu027',
+		// },
+		{
+			type: 'text',
 			label: 'Email',
-			value: 'yusuf@iamyuu.dev'
+			value: 'yusuf@iamyuu.dev',
 		},
 	],
-	about: 'I\'m software engineers who love to learn how things work. In love with software engineering with a strong passion to learn new things. Not a fan of any framework out there. Starting a career as a back-end developer and currently focusing on front-end engineering.'
+	about: `A curious person, love to learn how things work,
+		in love with software engineering with a strong passion to learn new things.
+		Not a fan of any framework out there.
+		Looking for fun and challenging projects to work on.
+		My goal is to contribute to cutting-edge projects and create impactful software solutions.
+		Starting a career as a back-end engineer and now focus on front-end engineer.`,
+};
+
+function cleanUrl(url: string) {
+	return url
+		.replace(/https?:\/\//, '')
+		.split('/')
+		.pop();
 }
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-</head>
-<body class="max-w-2xl space-y-12 mt-12 lg:mt-24 mx-auto px-6 sm:px-8 overscroll-none">
+<Html class='max-w-2xl min-h-screen mx-auto px-6 sm:px-8 grid'>
 	<header>
-		<h1 class="text-white">{info.name}</h1>
-		<p class="opacity-65">{info.role} at {info.location}</p>
+		<h1 class='text-white'>{info.name}</h1>
+		<p class='opacity-65'>{info.role} at {info.location}</p>
 	</header>
 
-	<main class="space-y-12">
-		<section class="space-y-4">
-			<h2 class="opacity-85">Contact</h2>
+	<main class='space-y-12'>
+		<section class='space-y-4'>
+			<h2 class='opacity-85'>Contact</h2>
+			<div class='grid grid-cols-auto-w-48 gap-4'>
+				{
+					info.contact.map(c => {
+						const isLink = c.type === 'link';
+						const Tag = isLink ? 'a' : 'div';
 
-			<div class="grid grid-cols-auto-w-48 gap-4">
-				{info.contact.map((c) => {
-					const isLink = c.value.startsWith("http")
-					const Tag = isLink ? "a" : "div"
-
-					return (
-						<Tag class="flex flex-col group" href={isLink ? c.value : undefined}>
-							<span class="opacity-65">{c.label}</span>
-							{isLink ? (
-								<div class="flex flex-row space-x-1 group-hover:(underline underline-offset-4 decoration-gray-500)">
-									<span>{c.value.replace("https://", "").split("/")[1]}</span>
-									<span class="i-lucide-arrow-up-right" />
-								</div>
-							) : (
-								<span class="block">{c.value}</span>
-							)}
-						</Tag>
-					)
-				})}
+						return (
+							<Tag class='flex flex-col group' href={isLink ? c.value : undefined}>
+								<span class='opacity-65'>{c.label}</span>
+								{isLink ? (
+									<div class='flex flex-row space-x-1 group-hover:(underline underline-offset-4 decoration-gray-500)'>
+										<span>{cleanUrl(c.value)}</span>
+										<span class='i-lucide-arrow-up-right' />
+									</div>
+								) : (
+									<span class='block'>{c.value}</span>
+								)}
+							</Tag>
+						);
+					})
+				}
 			</div>
 		</section>
 
-		<section class="space-y-4">
-			<h2 class="opacity-85">About Me</h2>
+		<section class='space-y-4'>
+			<h2 class='opacity-85'>About Me</h2>
 			<p>{info.about}</p>
 		</section>
 	</main>
 
-	<footer class="text-center">
-		<small>
-			&copy; <time datetime={currentYear.toString()}>{currentYear}</time> Muhammad Yusuf.
-			Website built using Astro & UnoCSS (<a class="hover:(underline underline-offset-4 decoration-gray-500)" href="https://github.com/iamyuu/iamyuu">view source</a>).
-		</small>
-	</footer>
-</body>
-</html>
+	<Footer />
+
+	<style>
+		body {
+			grid-template-areas: 'header' 'main' 'footer';
+			grid-template-rows: 10rem minmax(0, 1fr) 3rem;
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		header {
+			align-self: center;
+			grid-area: header;
+		}
+		main {
+			grid-area: main;
+		}
+		footer {
+			grid-area: footer;
+		}
+	</style>
+</Html>
