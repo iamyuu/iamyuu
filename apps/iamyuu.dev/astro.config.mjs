@@ -9,7 +9,7 @@ import { SITE_URL } from './src/consts';
 // https://astro.build/config
 export default defineConfig({
 	site: SITE_URL,
-	output: 'hybrid',
+	output: 'server',
 	// https://docs.astro.build/en/guides/integrations-guide/cloudflare
 	adapter: cloudflare(),
 	integrations: [
