@@ -1,0 +1,32 @@
+name: Muhammad Yusuf
+role: Software Engineer
+location: Indonesia
+about: >-
+  A curious person, love to learn how things work, in love with software engineering with a strong passion to learn new things. Not a fan of any framework out there. Looking for
+  fun and challenging projects to work on. My goal is to contribute to cutting-edge projects and create impactful software solutions. Starting a career as a back-end engineer and
+  now focus on front-end engineer.
+contact:
+  - label: Twitter
+    value:
+      discriminant: link
+      value: https://twitter.com/iamyuu027
+  - label: GitHub
+    value:
+      discriminant: link
+      value: https://github.com/iamyuu
+  - label: Telegram
+    value:
+      discriminant: link
+      value: https://telegram.me/iamyuu027
+  - label: Instagram
+    value:
+      discriminant: link
+      value: https://instagram.com/iamyuu027
+  - label: Facebook
+    value:
+      discriminant: link
+      value: https://facebook.com/iamyuu027
+  - label: Email
+    value:
+      discriminant: text
+      value: yusuf@iamyuu.dev
