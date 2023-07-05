@@ -1,4 +1,4 @@
-import { config, fields, component, singleton, collection } from '@keystatic/core';
+import { type Config, config, fields, component, singleton, collection } from '@keystatic/core';
 
 // ---------------------------------------------------------------------------
 // Homepage
@@ -6,7 +6,7 @@ import { config, fields, component, singleton, collection } from '@keystatic/cor
 
 const homeSingleton = singleton({
 	label: 'Home',
-	path: 'src/content/home',
+	path: 'src/content/home/index',
 	schema: {
 		name: fields.text({
 			label: 'Name',
@@ -74,7 +74,7 @@ const tagsCollection = collection({
 
 const portofolioCollection = collection({
 	label: 'Portofolio',
-	path: 'src/content/tags/*',
+	path: 'src/content/portofolio/*',
 	slugField: 'title',
 	schema: {
 		cover: fields.image({
@@ -177,14 +177,19 @@ const articlesCollection = collection({
 
 // ---------------------------------------------------------------------------
 
+const storage: Config['storage'] =
+	process.env.NODE_ENV === 'development'
+		? { kind: 'local' }
+		: {
+				kind: 'github',
+				repo: {
+					owner: 'iamyuu',
+					name: 'iamyuu',
+				},
+		  };
+
 export default config({
-	storage: {
-		kind: 'github',
-		repo: {
-			owner: 'iamyuu',
-			name: 'iamyuu',
-		},
-	},
+	storage,
 
 	singletons: {
 		home: homeSingleton,
