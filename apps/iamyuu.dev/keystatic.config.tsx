@@ -1,4 +1,4 @@
-import { type Config, config, fields, component, singleton, collection } from '@keystatic/core';
+import { config, fields, component, singleton, collection } from '@keystatic/core';
 
 // ---------------------------------------------------------------------------
 // Homepage
@@ -177,19 +177,14 @@ const articlesCollection = collection({
 
 // ---------------------------------------------------------------------------
 
-const storage: Config['storage'] =
-	process.env.NODE_ENV === 'development'
-		? { kind: 'local' }
-		: {
-				kind: 'github',
-				repo: {
-					owner: 'iamyuu',
-					name: 'iamyuu',
-				},
-		  };
-
 export default config({
-	storage,
+	storage: {
+		kind: 'github',
+		repo: {
+			owner: 'iamyuu',
+			name: 'iamyuu',
+		},
+	},
 
 	singletons: {
 		home: homeSingleton,
