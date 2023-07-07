@@ -9,6 +9,10 @@ about: >-
   solutions. Starting a career as a back-end engineer and now focusing on
   front-end engineering.
 contact:
+  - label: Telegram
+    value:
+      discriminant: link
+      value: https://telegram.me/iamyuu027
   - label: GitHub
     value:
       discriminant: link

@@ -1,12 +1,11 @@
 ---
-import { createReader } from '@keystatic/core/reader';
-import keystaticConfig from '../../keystatic.config';
+import { getCollection } from 'astro:content';
 
 import Html from '../components/BaseHtml.astro';
 import Footer from '../components/Footer.astro';
 
-const reader = createReader(process.cwd(), keystaticConfig);
-const info = await reader.singletons.home.readOrThrow();
+const [homeEntry] = await getCollection('home');
+const info = homeEntry.data;
 
 function cleanUrl(url: string) {
 	return url
