@@ -1,19 +1,20 @@
 {
-	"name": "iamyuu",
-	"private": true,
-	"version": "0.0.0",
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	],
-	"scripts": {
-		"web:dev": "turbo run dev --filter=@iamyuu/web",
-		"web:build": "turbo run build --filter=@iamyuu/web",
-		"clean": "turbo clean && rm -rf node_modules"
-	},
-	"author": "Muhammad Yusuf <yusuf@iamyuu.dev>",
-	"license": "MIT",
-	"devDependencies": {
-		"turbo": "1.10"
-	}
+  "name": "@iamyuu/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@nuxt-themes/alpine": "latest",
+    "@nuxt/eslint-config": "^0.2.0",
+    "@nuxthq/studio": "1.0.0",
+    "@types/node": "^20.7.1",
+    "eslint": "^8.50.0",
+    "nuxt": "^3.7.4"
+  }
 }
