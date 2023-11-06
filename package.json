@@ -12,9 +12,9 @@
   "devDependencies": {
     "@nuxt-themes/alpine": "latest",
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxthq/studio": "1.0.0",
+    "@nuxthq/studio": "1.0.3",
     "@types/node": "^20.7.1",
     "eslint": "^8.50.0",
-    "nuxt": "^3.7.4"
+    "nuxt": "^3.8.1"
   }
 }
