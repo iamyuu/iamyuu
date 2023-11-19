@@ -4,6 +4,8 @@ import formatDate from '@/utils/formatDate';
 import { getAllPost } from '@/utils/data';
 
 const posts = await getAllPost();
+
+export const prerender = true;
 ---
 
 <Layout title='All Posts'>

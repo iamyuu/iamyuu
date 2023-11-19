@@ -13,6 +13,8 @@ import { getAllPost, getAllProject } from '@/utils/data';
 
 const posts = await getAllPost();
 const projects = await getAllProject();
+
+export const prerender = true;
 ---
 
 <Layout>
