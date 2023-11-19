@@ -5,9 +5,17 @@ export const collections = {
     type: "content",
     schema: z.object({
       title: z.string(),
-      publishedAt: z.date(),
+      publishedAt: z.coerce.date(),
       description: z.string().optional(),
+      tags: z.array(z.string()).default([]),
       draft: z.boolean().default(false),
+    })
+  }),
+
+  postTags: defineCollection({
+    type: "data",
+    schema: z.object({
+      text: z.string(),
     })
   }),
 
