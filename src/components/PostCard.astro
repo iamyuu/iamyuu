@@ -1,0 +1,26 @@
+---
+import formatDate from '@/utils/formatDate';
+
+type Props = {
+	title: string;
+	publishedAt: Date;
+	description: string;
+	slug: string;
+};
+
+const { title, publishedAt, description, slug } = Astro.props;
+---
+
+<a
+	class='group cursor-pointer flex flex-col space-y-2 rounded-md border border-neutral-700 p-4 transition-all duration-300 hover:-translate-y-2 hover:border-neutral-400'
+	href={`/posts/${slug}`}
+>
+	<div class='flex flex-col justify-between gap-2 md:flex-row md:items-center'>
+		<p class='text-neutral-100'>{title}</p>
+		<small>{formatDate(publishedAt)}</small>
+	</div>
+
+	<p class='truncate'>
+		{description}
+	</p>
+</a>
