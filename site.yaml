@@ -1,0 +1,30 @@
+
+avatar: /img/profile.jpg
+favicon: /img/profile.jpg
+fullname: Muhammad Yusuf
+# slogan: Less is More
+
+# OG image
+og: /img/og.jpg
+origin: https://iamyuu.dev
+
+social:
+  - icon: email
+    url: email:yusuf@iamyuu.dev
+    alt: Muhammad Yusuf email address
+  - icon: twitter
+    url: https://twitter.com/iamyuu027
+    alt: Twitter profile
+  - icon: github
+    url: https://github.com/iamyuu
+    alt: Github projects
+  - icon: linkedin
+    url: https://linkedin.com/in/iamyuu027
+    alt: LinkedIn profile
+  # - icon: telegram
+  #   url: https://telegram.me/iamyuu027
+  #   alt: DM Telegram
+
+# nue config
+globals: [global]
+page_router: true

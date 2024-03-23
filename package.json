@@ -2,5 +2,13 @@
 	"name": "@iamyuu/web",
 	"type": "module",
 	"version": "0.0.0",
-	"scripts": {}
+	"scripts": {
+		"dev": "pnpm clean && nue",
+		"build": "pnpm clean && nue build -p",
+		"preview": "pnpm dlx serve .dist/prod",
+		"clean": "rm -rf .dist"
+	},
+	"devDependencies": {
+		"nuekit": "0.5.1"
+	}
 }
