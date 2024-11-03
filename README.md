@@ -1,6 +1,9 @@
-# Hello there 👋
-
-- 🤝 I'm Muhammad Yusuf
-- 😄 Pronouns is he/him
-- 🌱 Currently re-learning the fundamentals stuff
-- 📫 Reach me at [Telegram](https://telegram.me/iamyuu027)
+<div align="center">
+  <br>
+  <a href="https://github.com/iamyuu">
+		<img src="https://github.githubassets.com/images/mona-loading-dark.gif" width="48" height="48">
+	</a>
+  <p>One moment please...</p>
+  <br>
+  <br>
+</a>
