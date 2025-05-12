@@ -1,0 +1,12 @@
+{
+  "name": "iamyuu",
+  "version": "0.0.0",
+  "description": "All-in-one collection website and library",
+  "scripts": {
+    "web": "pnpm --filter web dev",
+    "web:build": "pnpm --filter web build"
+  },
+  "author": "Muhammad Yusuf <yusuf@iamyuu.dev>",
+  "license": "MIT",
+  "packageManager": "pnpm@10.10.0"
+}
