@@ -1,0 +1,290 @@
+---
+import IconMoon from "@/assets/icons/IconMoon.svg";
+import IconSearch from "@/assets/icons/IconSearch.svg";
+import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
+import { SITE } from "@/config";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const isActive = (path: string) => {
+  const currentPathArray = currentPath.split("/").filter((p) => p.trim());
+  const pathArray = path.split("/").filter((p) => p.trim());
+  return currentPath === path || currentPathArray[0] === pathArray[0];
+};
+---
+
+<div id="mobile-menu" class="mobile-menu sm:hidden" aria-hidden="true">
+  <!-- Overlay/Backdrop -->
+  <div class="mobile-menu-backdrop"></div>
+
+  <!-- Floating Glass Panel -->
+  <div class="app-layout">
+    <div
+      class="mobile-menu-panel relative mt-2 w-full mx-auto rounded-2xl border border-white/10 dark:border-white/5 overflow-hidden shadow-2xl"
+    >
+      <div class="mobile-menu-inner">
+        <nav class="mobile-nav-links">
+          <a
+            href="/posts"
+            class:list={["mobile-nav-link", { active: isActive("/posts") }]}
+            style="--i:0"
+          >
+            <span class="mobile-nav-indicator"></span>
+            <span>Posts</span>
+          </a>
+          <a
+            href="/tags"
+            class:list={["mobile-nav-link", { active: isActive("/tags") }]}
+            style="--i:1"
+          >
+            <span class="mobile-nav-indicator"></span>
+            <span>Tags</span>
+          </a>
+          <a
+            href="/about"
+            class:list={["mobile-nav-link", { active: isActive("/about") }]}
+            style="--i:2"
+          >
+            <span class="mobile-nav-indicator"></span>
+            <span>About</span>
+          </a>
+          {
+            SITE.showArchives && (
+              <a
+                href="/archives"
+                class:list={[
+                  "mobile-nav-link",
+                  { active: isActive("/archives") },
+                ]}
+                style="--i:3"
+              >
+                <span class="mobile-nav-indicator" />
+                <span>Archives</span>
+              </a>
+            )
+          }
+          {
+            SITE.showGalleries && (
+              <a
+                href="/galleries"
+                class:list={[
+                  "mobile-nav-link",
+                  { active: isActive("/galleries") },
+                ]}
+                style="--i:4"
+              >
+                <span class="mobile-nav-indicator" />
+                <span>Galerías</span>
+              </a>
+            )
+          }
+        </nav>
+
+        <!-- Divider -->
+        <div class="mobile-menu-divider"></div>
+
+        <!-- Bottom action row -->
+        <div class="mobile-menu-actions">
+          <button
+            data-search-trigger
+            class="mobile-action-btn flex-1 justify-center"
+            title="Buscar (⌘K)"
+            aria-label="Abrir búsqueda"
+          >
+            <IconSearch class="size-4" />
+            <span>Search</span>
+          </button>
+          {
+            SITE.lightAndDarkMode && (
+              <button
+                id="theme-btn-mobile"
+                class="mobile-action-btn flex-1 justify-center"
+                title="Cambiar tema"
+                aria-label="auto"
+                aria-live="polite"
+              >
+                <IconMoon class="block size-4 dark:hidden" />
+                <IconSunHigh class="hidden size-4 dark:block" />
+                <span class="block dark:hidden">Dark mode</span>
+                <span class="hidden dark:block">Light mode</span>
+              </button>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ─── Mobile Menu Floating Sheet ─── */
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 30;
+    pointer-events: none;
+  }
+
+  .mobile-menu.is-open {
+    pointer-events: auto;
+  }
+
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0);
+    transition: background-color 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mobile-menu.is-open .mobile-menu-backdrop {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu-panel {
+    background: color-mix(in srgb, var(--background) 80%, transparent);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top center;
+    transition:
+      opacity 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+      transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0.35s;
+    visibility: hidden;
+  }
+
+  .mobile-menu.is-open .mobile-menu-panel {
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+  }
+
+  /* ─── Mobile Menu Inner ─── */
+  .mobile-menu-inner {
+    position: relative;
+    padding: 1rem;
+  }
+
+  /* ─── Mobile Nav Links ─── */
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--foreground);
+    border-radius: 0.75rem;
+    transition: color 0.1s ease-out, background-color 0.1s ease-out;
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .mobile-menu.is-open .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      color 0.1s ease-out,
+      background-color 0.1s ease-out;
+    transition-delay: calc(0.08s * var(--i, 0) + 0.12s);
+  }
+
+  :is(.mobile-nav-link, .mobile-action-btn):hover {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+  }
+
+  .mobile-action-btn:hover {
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .mobile-nav-link.active {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  .mobile-nav-indicator {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--foreground) 20%, transparent);
+    transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
+    flex-shrink: 0;
+  }
+
+  :is(.mobile-nav-link.active, .mobile-nav-link:hover) .mobile-nav-indicator {
+    background: var(--accent);
+  }
+
+  .mobile-nav-link.active .mobile-nav-indicator {
+    box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+
+  /* ─── Menu Divider ─── */
+  .mobile-menu-divider {
+    margin: 0.75rem 0.5rem;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--border) 40%, transparent),
+      transparent
+    );
+  }
+
+  /* ─── Mobile Action Buttons ─── */
+  .mobile-menu-actions {
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .mobile-menu.is-open .mobile-menu-actions {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.35s;
+  }
+
+  .mobile-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--foreground);
+    border-radius: 0.625rem;
+    border: 1px solid color-mix(in srgb, var(--border) 20%, transparent);
+    background: color-mix(in srgb, var(--background) 50%, transparent);
+    backdrop-filter: blur(8px);
+    transition: color 0.2s ease, background-color 0.2s ease,
+      border-color 0.2s ease;
+    cursor: pointer;
+  }
+</style>

@@ -1,0 +1,599 @@
+---
+/**
+ * GalleryEmbed — renderiza un grid inline de una galería dentro de un post MDX.
+ *
+ * Uso en un archivo .mdx:
+ *   <GalleryEmbed slug="nombre-de-la-galeria" />
+ *
+ * Props:
+ *   slug      — nombre de la carpeta en src/data/galleries/ (requerido)
+ *   limit     — número máximo de imágenes a mostrar (default: 6; 0 = todas)
+ *   showLink  — mostrar enlace "Ver galería completa" (default: true)
+ *   cols      — columnas del grid: 2 | 3 | 4 (default: 3)
+ */
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+type Props = {
+  slug: string;
+  limit?: number;
+  showLink?: boolean;
+  cols?: 2 | 3 | 4;
+};
+
+const { slug, limit = 6, showLink = true, cols = 3 } = Astro.props;
+
+// ── 1. Buscar la entrada de la colección por slug ────────────────────────────
+// Se obtienen TODAS (incluyendo drafts) para que el embed funcione en preview;
+// el filtro de draft lo aplica el autor eligiendo no publicar el post que lo contenga.
+const allGalleries = await getCollection("galleries");
+const entry = allGalleries.find(g => {
+  // Normalizar separadores y quitar extensión para comparar solo el slug
+  const normalized = g.id
+    .replace(/\\/g, "/")
+    .replace(/\/index\.(md|mdx)$/, "")
+    .replace(/\.(md|mdx)$/, "");
+  return normalized === slug;
+});
+
+// ── 2. Cargar imágenes desde la carpeta con glob estático ────────────────────
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/data/galleries/**/*.{jpg,jpeg,png,webp,avif,gif,JPG,JPEG,PNG,WEBP}",
+  { eager: true }
+);
+
+type GalleryImage = { src: ImageMetadata; alt: string };
+
+function filenameToAlt(filename: string, fallback: string): string {
+  return (
+    filename
+      .replace(/\.[^.]+$/, "")
+      .replace(/^\d+[-_]?/, "")
+      .replace(/[-_]/g, " ")
+      .replace(/\b\w/g, c => c.toUpperCase())
+      .trim() || fallback
+  );
+}
+
+const folderImages: GalleryImage[] = Object.entries(allImages)
+  .filter(
+    ([path]) =>
+      path.startsWith(`/src/data/galleries/${slug}/`) && !path.includes("index")
+  )
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([path, mod]) => {
+    const filename = path.split("/").pop() ?? "";
+    return {
+      src: mod.default,
+      alt: filenameToAlt(filename, entry?.data.title ?? slug),
+    };
+  });
+
+const visibleImages = limit > 0 ? folderImages.slice(0, limit) : folderImages;
+const remaining = folderImages.length - visibleImages.length;
+
+// ID único para el lightbox (permite múltiples embeds en la misma página)
+const lbId = `ge-lb-${slug}`;
+
+// Clase CSS del grid según columnas solicitadas
+const gridClass = {
+  2: "ge-grid-2",
+  3: "ge-grid-3",
+  4: "ge-grid-4",
+}[cols];
+---
+
+{
+  !entry ? (
+    <div class="ge-error">
+      ⚠️ Galería <code>{slug}</code> no encontrada. Verifica que exista{" "}
+      <code>src/data/galleries/{slug}/index.md</code>.
+    </div>
+  ) : (
+    <figure class="gallery-embed not-prose" data-gallery-embed={slug}>
+      {/* ncabezado de la galería embebida */}
+      <div class="ge-header">
+        <svg
+          class="ge-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        <span class="ge-title">{entry.data.title}</span>
+        {remaining > 0 && <span class="ge-count">+{remaining} más</span>}
+      </div>
+
+      {/* Grid de imágenes */}
+      {visibleImages.length > 0 ? (
+        <ul
+          class:list={["ge-grid", gridClass]}
+          role="list"
+          aria-label={`Galería: ${entry.data.title}`}
+        >
+          {visibleImages.map((img, idx) => (
+            <li>
+              <button
+                class="ge-item group"
+                data-lb={lbId}
+                data-index={idx}
+                aria-label={`Ver imagen: ${img.alt}`}
+                type="button"
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  class="ge-img"
+                  loading={idx < 4 ? "eager" : "lazy"}
+                  widths={[300, 600]}
+                  sizes={`(max-width: 640px) ${cols === 2 ? "50vw" : "33vw"}, ${cols === 4 ? "25vw" : cols === 2 ? "40vw" : "30vw"}`}
+                />
+                <div class="ge-overlay">
+                  <span class="ge-alt">{img.alt}</span>
+                </div>
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="ge-empty">Esta galería todavía no tiene imágenes.</p>
+      )}
+
+      {/* Pie: descripción + enlace a la galería completa */}
+      <figcaption class="ge-footer">
+        {entry.data.description && (
+          <span class="ge-desc">{entry.data.description}</span>
+        )}
+        {showLink && (
+          <a href={`/galleries/${slug}`} class="ge-link">
+            Ver galería completa
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="7" y1="17" x2="17" y2="7" />
+              <polyline points="7 7 17 7 17 17" />
+            </svg>
+          </a>
+        )}
+      </figcaption>
+    </figure>
+  )
+}
+
+<!-- Lightbox propio de este embed -->
+<dialog
+  id={lbId}
+  class="ge-lightbox"
+  aria-label={`Visor: ${entry?.data.title ?? slug}`}
+  aria-modal="true"
+>
+  <button
+    class="ge-lb-close"
+    data-lb-close={lbId}
+    aria-label="Cerrar"
+    type="button"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+  <button
+    class="ge-lb-nav ge-lb-prev"
+    data-lb-prev={lbId}
+    aria-label="Anterior"
+    type="button"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+  <div class="ge-lb-content">
+    <img id={`${lbId}-img`} src="" alt="" class="ge-lb-image" />
+    <p id={`${lbId}-caption`} class="ge-lb-caption"></p>
+    <span id={`${lbId}-counter`} class="ge-lb-counter"></span>
+  </div>
+  <button
+    class="ge-lb-nav ge-lb-next"
+    data-lb-next={lbId}
+    aria-label="Siguiente"
+    type="button"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </button>
+</dialog>
+
+<script>
+  function initEmbeds() {
+    // Inicializar todos los gallery-embeds que haya en la página
+    document
+      .querySelectorAll<HTMLElement>("[data-gallery-embed]")
+      .forEach(embed => {
+        const slug = embed.getAttribute("data-gallery-embed")!;
+        const lbId = `ge-lb-${slug}`;
+        const lb = document.getElementById(lbId) as HTMLDialogElement | null;
+        if (!lb) return;
+        const dialog = lb; // alias tipado para closures
+
+        const items = Array.from(
+          embed.querySelectorAll<HTMLButtonElement>("[data-lb]")
+        );
+        if (items.length === 0) return;
+
+        const lbImg = document.getElementById(
+          `${lbId}-img`
+        ) as HTMLImageElement | null;
+        const lbCaption = document.getElementById(`${lbId}-caption`);
+        const lbCounter = document.getElementById(`${lbId}-counter`);
+
+        let current = 0;
+
+        function open(idx: number) {
+          current = Math.max(0, Math.min(idx, items.length - 1));
+          const img = items[current].querySelector("img");
+          if (!img || !lbImg) return;
+          lbImg.src = img.src;
+          lbImg.alt = img.alt;
+          if (lbCaption) lbCaption.textContent = img.alt;
+          if (lbCounter)
+            lbCounter.textContent = `${current + 1} / ${items.length}`;
+          dialog.showModal();
+          document.body.style.overflow = "hidden";
+        }
+
+        function close() {
+          dialog.close();
+          document.body.style.overflow = "";
+        }
+
+        // Botones de las imágenes
+        items.forEach((btn, idx) => {
+          // Evitar duplicar listeners en re-init
+          btn.addEventListener("click", () => open(idx), { once: false });
+        });
+
+        // Controles del lightbox
+        lb.querySelector("[data-lb-close]")?.addEventListener("click", close);
+        lb.querySelector("[data-lb-prev]")?.addEventListener("click", () =>
+          open(current - 1)
+        );
+        lb.querySelector("[data-lb-next]")?.addEventListener("click", () =>
+          open(current + 1)
+        );
+
+        // Cerrar al clic en el backdrop
+        lb.addEventListener("click", e => {
+          if (e.target === dialog) close();
+        });
+
+        // Teclado — sólo si ESTE lightbox está abierto
+        document.addEventListener("keydown", e => {
+          if (!dialog.open) return;
+          if (e.key === "Escape") close();
+          if (e.key === "ArrowLeft") open(current - 1);
+          if (e.key === "ArrowRight") open(current + 1);
+        });
+      });
+  }
+
+  initEmbeds();
+  document.addEventListener("astro:after-swap", initEmbeds);
+</script>
+
+<style>
+  /* ── Contenedor ── */
+  .gallery-embed {
+    margin-block: 2rem;
+    border: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  /* ── Encabezado ── */
+  .ge-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: color-mix(in srgb, var(--foreground) 3%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 20%, transparent);
+  }
+  .ge-icon {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .ge-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    flex: 1;
+  }
+  .ge-count {
+    font-size: 0.75rem;
+    color: var(--foreground);
+    opacity: 0.5;
+  }
+
+  /* ── Grid ── */
+  .ge-grid {
+    display: grid;
+    gap: 2px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .ge-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ge-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .ge-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    .ge-grid-3,
+    .ge-grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ── Ítem imagen ── */
+  .ge-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    cursor: zoom-in;
+    background: color-mix(in srgb, var(--foreground) 5%, transparent);
+    padding: 0;
+    border: none;
+  }
+  .ge-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+    display: block;
+  }
+  .ge-item:hover .ge-img {
+    transform: scale(1.06);
+  }
+  .ge-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.55) 0%,
+      transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .ge-item:hover .ge-overlay,
+  .ge-item:focus-visible .ge-overlay {
+    opacity: 1;
+  }
+  .ge-alt {
+    font-size: 0.7rem;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    line-height: 1.3;
+  }
+
+  /* ── Pie ── */
+  .ge-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.625rem 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--border) 20%, transparent);
+    background: color-mix(in srgb, var(--foreground) 2%, transparent);
+  }
+  .ge-desc {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    line-height: 1.4;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    white-space: nowrap;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    flex-shrink: 0;
+  }
+  .ge-link:hover {
+    opacity: 0.75;
+    text-decoration: underline;
+  }
+
+  /* ── Error ── */
+  .ge-error {
+    margin-block: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid color-mix(in srgb, orange 40%, transparent);
+    background: color-mix(in srgb, orange 8%, transparent);
+    font-size: 0.875rem;
+  }
+  .ge-empty {
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    opacity: 0.5;
+  }
+
+  /* ── Lightbox ── */
+  .ge-lightbox {
+    position: fixed;
+    inset: 0;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.92);
+    border: none;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    z-index: 200;
+  }
+  .ge-lightbox::backdrop {
+    background: transparent;
+  }
+  .ge-lightbox:not([open]) {
+    display: none;
+  }
+
+  .ge-lb-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-block: 3.5rem;
+    gap: 0.625rem;
+  }
+  .ge-lb-image {
+    max-width: 100%;
+    max-height: calc(100dvh - 10rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.375rem;
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6);
+  }
+  .ge-lb-caption {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.65);
+    text-align: center;
+    max-width: 55ch;
+  }
+  .ge-lb-counter {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.35);
+  }
+  .ge-lb-close {
+    position: absolute;
+    top: 0.875rem;
+    right: 0.875rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 10;
+  }
+  .ge-lb-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .ge-lb-nav {
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-inline: 0.25rem;
+  }
+  .ge-lb-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 480px) {
+    .ge-lb-nav {
+      position: absolute;
+      bottom: 1rem;
+      margin-inline: 0;
+    }
+    .ge-lb-prev {
+      left: 1rem;
+    }
+    .ge-lb-next {
+      right: 1rem;
+    }
+  }
+</style>

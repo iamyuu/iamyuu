@@ -1,0 +1,114 @@
+---
+import type { ImageMetadata } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import GalleryCard from "@/components/GalleryCard.astro";
+import { SITE } from "@/config";
+
+if (!SITE.showGalleries) {
+  return Astro.redirect("/404");
+}
+
+// Cargar todas las imágenes de todas las galerías en build-time
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/data/galleries/**/*.{jpg,jpeg,png,webp,avif,gif,JPG,JPEG,PNG,WEBP}",
+  { eager: true }
+);
+
+// Helper: extrae el slug del id de la colección (p.ej. "mi-viaje/index.md" → "mi-viaje")
+function getSlug(id: string) {
+  return id.replace(/\/index\.(md|mdx)$/, "").replace(/\.(md|mdx)$/, "");
+}
+
+// Obtener imágenes de una galería específica
+function getGalleryImages(slug: string): ImageMetadata[] {
+  return Object.entries(allImages)
+    .filter(
+      ([path]) =>
+        path.startsWith(`/src/data/galleries/${slug}/`) &&
+        !path.endsWith("index.md") &&
+        !path.endsWith("index.mdx")
+    )
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, mod]) => mod.default);
+}
+
+const rawGalleries = await getCollection(
+  "galleries",
+  ({ data }) => !data.draft
+);
+
+const galleries = rawGalleries
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDatetime).getTime() -
+      new Date(a.data.pubDatetime).getTime()
+  )
+  .map(gallery => {
+    const slug = getSlug(gallery.id);
+    const folderImages = getGalleryImages(slug);
+    return {
+      gallery,
+      slug,
+      fallbackImage: folderImages[0],
+      imageCount: folderImages.length,
+    };
+  });
+---
+
+<Layout title={`Galerías | ${SITE.title}`}>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-12">
+    <!-- Hero -->
+    <div class="archive-hero" data-archive-hero>
+      <div class="aurora-orb aurora-orb-1"></div>
+      <div class="aurora-orb aurora-orb-2"></div>
+      <div class="aurora-orb aurora-orb-3"></div>
+      <div class="aurora-mouse" data-archive-mouse></div>
+      <div class="relative z-10">
+        <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">
+          <span class="glow-text">Galerías</span>
+        </h1>
+        <p class="mt-3 max-w-lg text-foreground/70 italic">
+          Colecciones de imágenes para compartir momentos y proyectos.
+        </p>
+        <div class="mt-4 flex flex-wrap items-center gap-2">
+          <span class="hero-badge"
+            >{galleries.length}
+            {galleries.length === 1 ? "galería" : "galerías"}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid de galerías -->
+    {
+      galleries.length === 0 ? (
+        <p class="mt-12 text-center text-foreground/50 italic">
+          Todavía no hay galerías publicadas.
+        </p>
+      ) : (
+        <ul
+          class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          role="list"
+        >
+          {galleries.map(({ gallery, slug, fallbackImage, imageCount }) => (
+            <li>
+              <GalleryCard
+                gallery={gallery}
+                slug={slug}
+                fallbackImage={fallbackImage}
+                imageCount={imageCount}
+              />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </main>
+  <Footer />
+</Layout>

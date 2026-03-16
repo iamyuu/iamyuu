@@ -1,0 +1,79 @@
+---
+// Remove current url path and remove trailing slash if exists
+const currentUrlPath = Astro.url.pathname.replace(/\/+$/, "");
+
+// Get url array from path
+// eg: /tags/tailwindcss => ['tags', 'tailwindcss']
+const breadcrumbList = currentUrlPath.split("/").slice(1);
+
+// if breadcrumb is Home > Posts > 1 <etc>
+// replace Posts with Posts (page number)
+if (breadcrumbList[0] === "posts") {
+  breadcrumbList.splice(0, 2, `Posts (page ${breadcrumbList[1] || 1})`);
+}
+
+// if breadcrumb is Home > Tags > [tag] > [page] <etc>
+// replace [tag] > [page] with [tag] (page number)
+if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
+  breadcrumbList.splice(
+    1,
+    3,
+    `${breadcrumbList[1]} ${Number(breadcrumbList[2]) === 1 ? "" : "(page " + breadcrumbList[2] + ")"}`
+  );
+}
+---
+
+<nav class="app-layout mt-6 mb-2" aria-label="breadcrumb">
+  <div class="breadcrumb-bar inline-flex items-center gap-1.5 rounded-full border border-border/20 bg-muted/5 px-3 py-1.5 font-cartograph text-sm backdrop-blur-sm">
+    {/* Home icon / Root symbol */}
+    <a
+      href="/"
+      class="breadcrumb-link inline-flex shrink-0 items-center justify-center rounded-md px-1.5 py-0.5 text-foreground/50 transition-colors duration-200 hover:bg-muted/10 hover:text-accent"
+      aria-label="Home"
+      title="Home"
+    >
+      ~
+    </a>
+    {
+      breadcrumbList.map((breadcrumb, index) => (
+        <>
+          <span
+            class="breadcrumb-sep shrink-0 text-accent/40"
+            aria-hidden="true"
+          >
+            /
+          </span>
+
+          {index + 1 === breadcrumbList.length ? (
+            <span
+              class:list={[
+                "breadcrumb-current truncate px-1.5 py-0.5 text-accent/90 capitalize",
+                { lowercase: index > 0 },
+              ]}
+              aria-current="page"
+            >
+              {decodeURIComponent(breadcrumb)}
+            </span>
+          ) : (
+            <a
+              href={`/${breadcrumb}/`}
+              class="breadcrumb-link shrink-0 rounded-md px-1.5 py-0.5 capitalize text-foreground/50 transition-colors duration-200 hover:bg-muted/10 hover:text-accent"
+            >
+              {decodeURIComponent(breadcrumb)}
+            </a>
+          )}
+        </>
+      ))
+    }
+  </div>
+</nav>
+
+<style>
+  .breadcrumb-bar {
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .breadcrumb-current {
+    max-width: 28ch;
+  }
+</style>

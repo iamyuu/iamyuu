@@ -1,0 +1,115 @@
+---
+import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
+import { SITE } from "@/config";
+
+// Build breadcrumb from current URL
+const currentUrlPath = Astro.url.pathname.replace(/\/+$/, "");
+const pathSegments = currentUrlPath.split("/").filter(s => s.trim());
+---
+
+{
+  SITE.showBackButton && (
+    <div class="app-layout">
+      <div class="nav-bar-back mt-6 mb-2 flex items-center gap-3 overflow-hidden">
+        <div class="inline-flex items-center gap-1.5 rounded-full border border-border/20 bg-muted/5 px-3 py-1.5 font-cartograph text-sm backdrop-blur-sm breadcrumb-bar">
+          {/* Back button */}
+          <a
+            id="back-button"
+            href="/"
+            class="back-btn group inline-flex shrink-0 items-center justify-center gap-1 rounded-md px-1.5 py-0.5 text-foreground/50 transition-all duration-200 hover:bg-muted/10 hover:text-accent"
+          >
+            <IconChevronLeft class="size-3.5 transition-transform duration-200 group-hover:-translate-x-0.5 rtl:rotate-180 rtl:group-hover:translate-x-0.5" />
+            <span>cd ..</span>
+          </a>
+
+        {/* Breadcrumb trail */}
+        {pathSegments.length > 0 && (
+          <nav
+            aria-label="breadcrumb"
+            class="breadcrumb-trail flex min-w-0 items-center gap-1 text-sm"
+          >
+            {/* Separator after Back button */}
+            <span
+              class="breadcrumb-sep shrink-0 text-accent/40"
+              aria-hidden="true"
+            >
+              /
+            </span>
+
+            {/* Home / Root */}
+            <a
+              href="/"
+              class="breadcrumb-link shrink-0 rounded-md px-1.5 py-0.5 text-foreground/50 transition-colors duration-200 hover:bg-muted/10 hover:text-accent"
+              aria-label="Ir a inicio"
+              title="Inicio"
+            >
+              ~
+            </a>
+
+            {pathSegments.map((segment, index) => (
+              <>
+                <span
+                  class="breadcrumb-sep shrink-0 text-accent/40"
+                  aria-hidden="true"
+                >
+                  /
+                </span>
+
+                {index + 1 === pathSegments.length ? (
+                  <span
+                    class="breadcrumb-current truncate px-1.5 py-0.5 text-accent/90 capitalize"
+                    aria-current="page"
+                  >
+                    {decodeURIComponent(segment)}
+                  </span>
+                ) : (
+                  <a
+                    href={`/${pathSegments.slice(0, index + 1).join("/")}/`}
+                    class="breadcrumb-link shrink-0 rounded-md px-1.5 py-0.5 capitalize text-foreground/50 transition-colors duration-200 hover:bg-muted/10 hover:text-accent"
+                  >
+                    {decodeURIComponent(segment)}
+                  </a>
+                )}
+              </>
+            ))}
+          </nav>
+        )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .breadcrumb-bar {
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .breadcrumb-current {
+    max-width: 22ch;
+  }
+
+  /* Mobile: hide breadcrumb text, keep back button */
+  @media (max-width: 639px) {
+    .breadcrumb-trail {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  /* Update back URL from session */
+  function updateGoBackUrl() {
+    const backButton: HTMLAnchorElement | null =
+      document.querySelector("#back-button");
+
+    const backUrl = sessionStorage.getItem("backUrl");
+
+    if (backUrl && backButton) {
+      backButton.href = backUrl;
+    }
+  }
+
+  document.addEventListener("astro:page-load", updateGoBackUrl);
+  updateGoBackUrl();
+</script>

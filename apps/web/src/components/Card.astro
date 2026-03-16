@@ -1,0 +1,86 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { slugifyStr } from "@/utils/slugify";
+import { getPath } from "@/utils/getPath";
+import Datetime from "./Datetime.astro";
+
+type Props = {
+  variant?: "h2" | "h3";
+  featured?: boolean;
+} & CollectionEntry<"blog">;
+
+const { variant: Heading = "h2", featured = false, id, data, filePath } = Astro.props;
+
+const { title, description, ...props } = data;
+---
+
+<li
+  class:list={[
+    "card-glow group/card relative my-3 rounded-2xl p-4 sm:p-5",
+    "border border-border/25",
+    "transition-all duration-300 ease-out",
+    "hover:border-accent/40 hover:bg-accent/5",
+    "hover:-translate-y-0.5",
+    "hover:shadow-lg hover:shadow-accent/10",
+    featured && "border-accent/40 bg-accent/5 shadow-[0_0_20px_-5px_rgba(var(--accent),0.15)]",
+  ]}
+>
+  <!-- Cursor-following glow -->
+  <div
+    class="card-glow-effect pointer-events-none absolute inset-0 z-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover/card:opacity-100"
+    aria-hidden="true"
+  >
+  </div>
+  <!-- Noise dithering -->
+  <div
+    class="card-noise pointer-events-none absolute inset-0 z-1 rounded-2xl opacity-0 transition-opacity duration-300 group-hover/card:opacity-100"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative z-5">
+    <a
+      href={getPath(id, filePath)}
+      class="text-lg font-semibold text-foreground transition-colors duration-200 group-hover/card:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+      style={{ viewTransitionName: slugifyStr(String(title).replaceAll(".", "-")) }}
+    >
+      <Heading>
+        {title}
+      </Heading>
+      <!-- Expand clickable area to whole card on top of everything, minus the description -->
+      <span class="absolute -inset-4 sm:-inset-5 z-10" aria-hidden="true"></span>
+    </a>
+    
+    <Datetime pubDatetime={props.pubDatetime as string | Date} modDatetime={props.modDatetime as string | Date | null | undefined} class="relative z-20 mt-1.5 pointer-events-none" />
+    
+    <p class="relative z-20 mt-2 line-clamp-2 text-sm leading-relaxed opacity-65 pointer-events-auto select-text">
+      {description}
+    </p>
+  </div>
+</li>
+
+<style>
+  .card-glow-effect {
+    background: radial-gradient(
+      350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      color-mix(in oklab, var(--accent) 8%, transparent) 0%,
+      color-mix(in oklab, var(--accent) 6%, transparent) 15%,
+      color-mix(in oklab, var(--accent) 4%, transparent) 30%,
+      color-mix(in oklab, var(--accent) 2%, transparent) 45%,
+      color-mix(in oklab, var(--accent) 0.8%, transparent) 60%,
+      transparent 80%
+    );
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  .card-noise {
+    background-image: url("/noise.png");
+    background-repeat: repeat;
+    background-size: 64px 64px;
+    mix-blend-mode: overlay;
+    opacity: 0;
+  }
+  .group\/card:hover .card-noise {
+    opacity: 0.4;
+  }
+</style>
