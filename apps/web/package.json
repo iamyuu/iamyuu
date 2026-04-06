@@ -3,11 +3,10 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "dev": "vp run astro dev",
+    "dev": "astro dev",
     "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
     "preview": "astro preview",
     "sync": "astro sync",
-    "astro": "astro",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "lint": "eslint ."

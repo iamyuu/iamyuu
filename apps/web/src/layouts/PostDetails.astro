@@ -1,14 +1,13 @@
 ---
 import { render, type CollectionEntry } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
+// import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
 import EditPost from "@/components/EditPost.astro";
 import ShareLinks from "@/components/ShareLinks.astro";
 import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
-import GalleryEmbed from "@/components/GalleryEmbed.astro";
 import { getPath } from "@/utils/getPath";
 import { slugifyStr } from "@/utils/slugify";
 import { SITE } from "@/config";
@@ -81,7 +80,7 @@ const nextPost =
 ---
 
 <Layout {...layoutProps}>
-  <Header />
+  <!-- <Header /> -->
   <BackButton />
   <main
     id="main-content"
@@ -89,7 +88,7 @@ const nextPost =
     data-pagefind-body
   >
     <!-- Post header section -->
-    <header class="post-header relative mb-10 text-center">
+    <header class="post-header relative my-10 text-center">
       <div class="post-hero-bg"></div>
       <div class="relative z-10 rounded-3xl border border-border/20 bg-muted/5 px-6 py-8 backdrop-blur-md sm:px-10 sm:py-12">
         <!-- Title -->
@@ -181,7 +180,7 @@ const nextPost =
       id="article"
       class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
     >
-      <Content components={{ GalleryEmbed }} />
+      <Content  />
     </article>
 
     <!-- ═══════ Post footer section ═══════ -->
@@ -189,7 +188,7 @@ const nextPost =
       <div class="relative h-px flex-1 bg-linear-to-r from-transparent via-border/30 to-accent/20">
         <div class="absolute inset-0 bg-linear-to-r from-transparent via-accent/40 to-accent/40 blur-[2px]"></div>
       </div>
-      
+
       <div class="relative z-10 flex items-center gap-2 font-cartograph text-[10px] tracking-widest text-accent/40 uppercase select-none">
         <span class="h-1.5 w-1.5 rounded-full bg-accent/50 shadow-[0_0_8px_var(--color-accent)]"></span>
         fin

@@ -52,36 +52,6 @@ const isActive = (path: string) => {
             <span class="mobile-nav-indicator"></span>
             <span>About</span>
           </a>
-          {
-            SITE.showArchives && (
-              <a
-                href="/archives"
-                class:list={[
-                  "mobile-nav-link",
-                  { active: isActive("/archives") },
-                ]}
-                style="--i:3"
-              >
-                <span class="mobile-nav-indicator" />
-                <span>Archives</span>
-              </a>
-            )
-          }
-          {
-            SITE.showGalleries && (
-              <a
-                href="/galleries"
-                class:list={[
-                  "mobile-nav-link",
-                  { active: isActive("/galleries") },
-                ]}
-                style="--i:4"
-              >
-                <span class="mobile-nav-indicator" />
-                <span>Galerías</span>
-              </a>
-            )
-          }
         </nav>
 
         <!-- Divider -->
@@ -92,8 +62,8 @@ const isActive = (path: string) => {
           <button
             data-search-trigger
             class="mobile-action-btn flex-1 justify-center"
-            title="Buscar (⌘K)"
-            aria-label="Abrir búsqueda"
+            title="Search (⌘K)"
+            aria-label="Open search"
           >
             <IconSearch class="size-4" />
             <span>Search</span>
@@ -103,7 +73,7 @@ const isActive = (path: string) => {
               <button
                 id="theme-btn-mobile"
                 class="mobile-action-btn flex-1 justify-center"
-                title="Cambiar tema"
+                title="Toggle theme"
                 aria-label="auto"
                 aria-live="polite"
               >
@@ -259,6 +229,7 @@ const isActive = (path: string) => {
   /* ─── Mobile Action Buttons ─── */
   .mobile-menu-actions {
     display: flex;
+    flex-direction: column;
     gap: 0.5rem;
     opacity: 0;
     transform: translateY(6px);

@@ -35,14 +35,14 @@ const totalPosts = page.total;
           <span class="glow-text">Posts</span>
         </h1>
         <p class="mt-3 max-w-lg text-foreground/70 italic">
-          Todos los artículos que he publicado.
+          All the posts I've published.
         </p>
         <div class="mt-4 flex flex-wrap items-center gap-2">
           <span class="hero-badge">{totalPosts} posts</span>
           {
             page.lastPage > 1 && (
               <span class="hero-badge">
-                Página {page.currentPage}/{page.lastPage}
+                Page {page.currentPage}/{page.lastPage}
               </span>
             )
           }
@@ -77,9 +77,9 @@ const totalPosts = page.total;
                 <line x1="9" y1="15" x2="15" y2="15"></line>
               </svg>
             </div>
-            <h3 class="empty-title">Aún no hay posts</h3>
+            <h3 class="empty-title">No posts yet</h3>
             <p class="empty-desc">
-              Vuelve más tarde para leer nuestros próximos artículos.
+              Come back later to read upcoming posts.
             </p>
           </div>
         ) : (
@@ -88,7 +88,7 @@ const totalPosts = page.total;
           </ul>
         )
       }
-      
+
       <div data-pagination-wrapper>
         <Pagination {page} />
       </div>
@@ -100,7 +100,7 @@ const totalPosts = page.total;
 
 <script>
   let cleanupController: AbortController | null = null;
-  
+
   function initPostsPage() {
     if (cleanupController) cleanupController.abort();
     cleanupController = new AbortController();
@@ -141,7 +141,7 @@ const totalPosts = page.total;
       if (import.meta.env.DEV) {
         container.innerHTML = `
           <div class="bg-muted/75 rounded p-4 text-sm mb-4 border border-border">
-            <p><strong>Dev Mode:</strong> La búsqueda intentará usar el índice construido más reciente. Si no ves resultados, ejecuta <code>pnpm run build</code> primero.</p>
+            <p><strong>Dev Mode:</strong> The search will try to use the most recently built index. If you don't see results, run <code>pnpm run build</code> first.</p>
           </div>
         `;
         // Removed the early return to allow pagefind to attempt loading the local index
@@ -156,7 +156,7 @@ const totalPosts = page.total;
       // Toggle default posts grid visibility when typing
       const input = container.querySelector(".pagefind-ui__search-input") as HTMLInputElement;
       const defaultContainer = document.querySelector("[data-default-posts-container]") as HTMLElement;
-      
+
       if (input && defaultContainer) {
         const toggleVisibility = () => {
           const hasValue = input.value.trim().length > 0;
@@ -168,7 +168,7 @@ const totalPosts = page.total;
         };
 
         input.addEventListener("input", toggleVisibility, { signal });
-        
+
         // Handle clear button
         const clearBtn = container.querySelector(".pagefind-ui__search-clear");
         if (clearBtn) {
@@ -190,7 +190,7 @@ const totalPosts = page.total;
           }
         }
       };
-      
+
       // Use capture mode to intercept before the global modal listener
       document.addEventListener("keydown", handleCmdK, { signal, capture: true });
 
@@ -372,7 +372,7 @@ const totalPosts = page.total;
     background: color-mix(in srgb, var(--accent) 8%, transparent);
     color: var(--accent);
     margin-bottom: 1.5rem;
-    box-shadow: 
+    box-shadow:
       0 0 0 1px color-mix(in srgb, var(--accent) 15%, transparent),
       0 10px 30px -10px color-mix(in srgb, var(--accent) 25%, transparent);
     animation: empty-float 4s ease-in-out infinite alternate;

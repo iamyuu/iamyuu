@@ -22,15 +22,15 @@ import IconArrowNarrowUp from "@/assets/icons/IconArrowNarrowUp.svg";
       "transition-all duration-200 ease-out",
     ]}
   >
-    <!-- 1: Anillo de progreso (conic-gradient) -->
+    <!-- 1: Progress ring (conic-gradient) -->
     <span
       id="progress-indicator"
       class="absolute inset-0 z-0 block rounded-full bg-transparent"></span>
-    <!-- 2: Fondo del botón, deja 3px de anillo visible -->
+    <!-- 2: Button background, leaves 3px of ring visible -->
     <span
       class="absolute inset-[3px] z-10 rounded-full bg-background backdrop-blur-md"
     ></span>
-    <!-- 3: Contenido (icono + etiqueta) -->
+    <!-- 3: Content (icon + label) -->
     <IconArrowNarrowUp
       class="relative z-20 size-5 text-accent transition-transform duration-200 group-hover:-translate-y-0.5 md:size-6"
     />

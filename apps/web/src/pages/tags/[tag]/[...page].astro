@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import type { GetStaticPathsOptions } from "astro";
 import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
+// import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Card from "@/components/Card.astro";
 import Pagination from "@/components/Pagination.astro";
@@ -32,7 +32,7 @@ const { page, tagName } = Astro.props;
 ---
 
 <Layout title={`Tag: ${tagName} | ${SITE.title}`}>
-  <Header />
+  <!-- <Header /> -->
   <Main
     pageTitle={[`Tag:`, `${tagName}`]}
     titleTransition={tag}

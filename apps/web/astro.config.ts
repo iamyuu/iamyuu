@@ -12,16 +12,14 @@ import {
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 
-// https://astro.build/config
+// @ts-ignore -- Excessive stack depth comparing types
 export default defineConfig({
   site: SITE.website,
   integrations: [
     mdx({
       extendMarkdownConfig: true,
     }),
-    sitemap({
-      filter: page => SITE.showArchives || !page.endsWith("/archives"),
-    }),
+    sitemap(),
   ],
   markdown: {
     remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
@@ -39,7 +37,10 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      // @ts-expect-error
+      tailwindcss()
+    ],
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },

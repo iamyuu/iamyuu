@@ -6,7 +6,6 @@ import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
-import IconPinterest from "@/assets/icons/IconPinterest.svg";
 import { SITE } from "@/config";
 
 interface Social {
@@ -19,26 +18,26 @@ interface Social {
 export const SOCIALS: Social[] = [
   {
     name: "GitHub",
-    href: "https://github.com/0xdres/",
-    linkTitle: `${SITE.title} en GitHub`,
+    href: "https://dub.sh/iamyuu-github",
+    linkTitle: `${SITE.title} on GitHub`,
     icon: IconGitHub,
   },
   {
     name: "X",
-    href: "https://x.com/avdyen",
-    linkTitle: `${SITE.title} en X`,
+    href: "https://dub.sh/iamyuu-twitter",
+    linkTitle: `${SITE.title} on X`,
     icon: IconBrandX,
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/avdyan/",
-    linkTitle: `${SITE.title} en LinkedIn`,
+    href: "https://dub.sh/iamyuu-linkedin",
+    linkTitle: `${SITE.title} on LinkedIn`,
     icon: IconLinkedin,
   },
   {
     name: "Mail",
-    href: "mailto:andres04u@gmail.com",
-    linkTitle: `Envia un correo a ${SITE.title}`,
+    href: "mailto:yusuf@iamyuu.dev",
+    linkTitle: `Send an email to ${SITE.title}`,
     icon: IconMail,
   },
 ] as const;
@@ -47,37 +46,31 @@ export const SHARE_LINKS: Social[] = [
   {
     name: "WhatsApp",
     href: "https://wa.me/?text=",
-    linkTitle: `Envia este post por WhatsApp`,
+    linkTitle: `Send this post via WhatsApp`,
     icon: IconWhatsapp,
   },
   {
     name: "Facebook",
     href: "https://www.facebook.com/sharer.php?u=",
-    linkTitle: `Comparte este post en Facebook`,
+    linkTitle: `Share this post on Facebook`,
     icon: IconFacebook,
   },
   {
     name: "X",
     href: "https://x.com/intent/post?url=",
-    linkTitle: `Comparte este post en X`,
+    linkTitle: `Share this post on X`,
     icon: IconBrandX,
   },
   {
     name: "Telegram",
     href: "https://t.me/share/url?url=",
-    linkTitle: `Comparte este post por Telegram`,
+    linkTitle: `Share this post on Telegram`,
     icon: IconTelegram,
-  },
-  {
-    name: "Pinterest",
-    href: "https://pinterest.com/pin/create/button/?url=",
-    linkTitle: `Comparte este post en Pinterest`,
-    icon: IconPinterest,
   },
   {
     name: "Mail",
     href: "mailto:?subject=See%20this%20post&body=",
-    linkTitle: `Envia este post por correo`,
+    linkTitle: `Send this post via email`,
     icon: IconMail,
   },
 ] as const;

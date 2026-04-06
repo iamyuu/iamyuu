@@ -96,45 +96,9 @@ const isActive = (path: string) => {
               <a
                 href="/search"
                 class:list={["nav-link", { "nav-active": isActive("/search") }]}
-                title="Ir a búsqueda">Search</a
+                title="Go to search">Search</a
               >
             </li>
-            {
-              SITE.showArchives && (
-                <li>
-                  <LinkButton
-                    href="/archives"
-                    class:list={[
-                      "nav-link",
-                      { "nav-active": isActive("/archives") },
-                    ]}
-                    title="Archives"
-                    aria-label="archives"
-                  >
-                    <IconArchive class="hidden sm:inline-block" />
-                    <span class="sm:sr-only">Archives</span>
-                  </LinkButton>
-                </li>
-              )
-            }
-            {
-              SITE.showGalleries && (
-                <li>
-                  <LinkButton
-                    href="/galleries"
-                    class:list={[
-                      "nav-link",
-                      { "nav-active": isActive("/galleries") },
-                    ]}
-                    title="Galerías"
-                    aria-label="galleries"
-                  >
-                    <IconGallery class="hidden sm:inline-block" />
-                    <span class="sm:sr-only">Galerías</span>
-                  </LinkButton>
-                </li>
-              )
-            }
 
             <!-- Separator -->
             <li class="flex items-center px-1" aria-hidden="true">
@@ -145,8 +109,8 @@ const isActive = (path: string) => {
               <button
                 data-search-trigger
                 class="nav-search-btn"
-                title="Buscar (⌘K)"
-                aria-label="Abrir búsqueda"
+                title="Search (⌘K)"
+                aria-label="Open search"
                 aria-keyshortcuts="Meta+K"
               >
                 <IconSearch class="size-4.5" />
@@ -189,7 +153,7 @@ const isActive = (path: string) => {
   #main-header {
     background: transparent;
   }
-  
+
   :global(.header-scrolled) {
     background: color-mix(in srgb, var(--background) 80%, transparent) !important;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
@@ -486,7 +450,7 @@ const isActive = (path: string) => {
     const backdrop = document.querySelector(".mobile-menu-backdrop");
 
     if (!menuBtn || !mobileMenu) return;
-    
+
     const closeMenu = () => {
       menuBtn.setAttribute("aria-expanded", "false");
       menuBtn.setAttribute("aria-label", "Open Menu");
@@ -510,7 +474,7 @@ const isActive = (path: string) => {
       },
       { signal }
     );
-    
+
     // Close when clicking the backdrop
     if (backdrop) {
       backdrop.addEventListener("click", closeMenu, { signal });
